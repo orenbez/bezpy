@@ -1,0 +1,9 @@
+<html>
+<body>
+    <form action="{% url 'glen:postresult' %}" method="post">  <!-- or simply use action='/fred/postresult' -->
+        {% csrf_token %}  <!-- requires csrf_token for security -->
+        <input type="text" name="posttext">
+        <input type="submit" value="press">
+    </form>
+</body>
+</html>

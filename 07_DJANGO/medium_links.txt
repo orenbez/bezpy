@@ -1,0 +1,4 @@
+https://medium.com/the-andela-way/creating-a-django-api-using-django-rest-framework-apiview-b365dca53c1d
+https://towardsdatascience.com/working-structure-of-django-mtv-architecture-a741c8c64082
+“Beautiful Visual Charts in Django” by Timothy Mugayi https://link.medium.com/LNuldpXTg8
+https://medium.com/better-programming/writing-efficient-django-a2af9102874?source=bookmarks---------0----------------------------

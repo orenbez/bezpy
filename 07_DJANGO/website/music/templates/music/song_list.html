@@ -1,0 +1,18 @@
+{% extends 'music/base2.html' %}
+{% block title %}All Songs{% endblock %}
+{% block songs_active %}active{% endblock %}
+
+{% block body %}
+{% if object_list %}
+  <h3>Here are my Songs ...</h3>
+  <ul>
+    {% for song in object_list %}
+    <li>
+        {{ song.id}} {{ song.song_title}}
+    </li>
+    {% endfor%}
+  </ul>
+{% else %}
+  <h3>You don't have any albums</h3>
+{% endif %}
+{% endblock %}

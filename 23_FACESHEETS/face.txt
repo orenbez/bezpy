@@ -1,0 +1,52 @@
+FACE SHEET Cape Employee: {{Cape-Employee}}
+
+
+Date: {{Today}}
+Information Provided By: {{Info-Provider}}   Relationship to Applicant: {{Rel-To-Applicant}}
+Adult to Accompany Child to Therapy: {{Adult-To-Accom}}  
+
+APPLICANT INFO
+Applicant full name: {{Applicant-Full-Name}}   Date of Birth: {{DOB}}   Age: {{Age}} 
+Applicant Address: {{Applicant-Address}} 
+Language: {{Language}} Ethnicity: {{Origin}}  Religion: {{Religion}}   Legal Gender: {{Gender}} 
+Household Composition: {{Household}}   Tech Capability: {{Tech-Capability}} 
+
+PARENT INFORMATION
+Parent/Guardian Name: {{Parent-Name}}   Name of Other Parent: {{Other-Parent}} 
+Parent/Guardian Address (if differs from applicant): {{Parent-Address}} 
+Parent/Guardian Email address: {{Parent-Email}}   Parent/guardian cell phone number: {{Parent-Cell}} 
+Permission to text parent: {{P-T-P}}   Permission to leave a voicemail for parent: {{P-V-P}}
+Parent is also emergency contact: {{P-E-C}}
+If No, Listed Emergency Contact: {{A-E-C}}
+Marital status of parent: {{P-Marital-Status}}   
+Firearm in house: {{Gun}}  
+Presenting Problem: {{Presenting-Problem}}
+
+REFERRAL INFORMATION
+How did you hear about us?: {{Hear-Of-Us}} 
+Referral Source & Title: {{Referral-Source}}  
+Referral Contact Information (if applicable): {{Referral-Contact}}
+
+SCHOOL INFORMATION
+School attending: {{School}}   Current Grade: {{Grade}}  
+Is your child receiving services at school? If so, what services? School experience?: {{Experience}}
+
+MEDICAL INFORMATION
+Pediatrician Name: {{Pediatrician-Name}}
+Pediatrician Phone #: {{Pediatrician-Phone}}
+Previous Treatments and/or Hospitalizations: {{Treatments}}
+Medications & Dosage: {{Meds}}
+If on Psych Meds, Prescribed by Whom: {{Psych-Meds-By-Whom}}
+Current Agencies Involved:  {{Agencies}}
+
+
+INSURANCE INFORMATION
+Name of insured: {{Name-Of-Insured}}
+Relationship to Insured: {{Relationship-To-Insured}}
+DOB of Insured: {{DOB-Insured}}
+Insurance Company: {{Insurance-Company}}
+Insurance Number: {{Insurance-Number}} 
+ADDITIONAL INFORMATION
+Notes: {{Notes}}
+
+

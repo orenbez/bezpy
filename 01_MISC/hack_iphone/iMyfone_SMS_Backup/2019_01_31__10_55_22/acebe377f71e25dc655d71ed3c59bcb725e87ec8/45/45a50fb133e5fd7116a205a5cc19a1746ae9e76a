@@ -1,0 +1,8 @@
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Apple Inc.//iOS 12.1.2//EN
+N:;Current Location;;;
+FN:Current Location
+item1.URL;type=pref:http://maps.apple.com/?ll=40.850571\,-73.267257&q=40.850571\,-73.267257
+item1.X-ABLabel:map url
+END:VCARD

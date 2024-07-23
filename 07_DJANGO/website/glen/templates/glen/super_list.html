@@ -1,0 +1,12 @@
+{% extends "glen\main.html" %}
+
+{% block title %}The List Page on an Entire Model{% endblock %}
+{% block content %}
+    Super List:<br>
+    {% for super in object_list %}
+       <br>{{ super.name }},{{ super.code }}===>
+        {% for sub in super.sub_set.all %}
+           {{ sub.sub_name }},
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

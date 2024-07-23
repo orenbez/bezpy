@@ -1,0 +1,16 @@
+{% if all_albums %}
+  <h3>Here are my albums ...</h3>
+  <ul>
+    {% for album in all_albums %}
+    <li>
+       <a href="/music/{{ album.id }}/">{{ album.album_title }}</a>
+       <!-- GENERATES SAME AS ABOVE  = <a href="/music/1/">Abbey Road</a> -->
+       <!-- works by using on name='detail3' in the url patterns passing value album.id -->
+       <a href="{% url 'music:detail3' album.id %}">{{ album.album_title }}</a>
+    </li>
+    {% endfor%}
+  </ul>
+{% else %}
+  <h3>You don't have any albums</h3>
+{% endif %}
+

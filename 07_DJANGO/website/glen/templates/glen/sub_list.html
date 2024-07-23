@@ -1,0 +1,9 @@
+{% extends "glen\main.html" %}
+
+{% block title %}The List Page on an Entire Model{% endblock %}
+{% block content %}
+    Sub List:<br>
+    {% for sub in object_list %}
+       <br>SubName:{{ sub.sub_name }}, SuperName:{{ sub.super.name }}
+    {% endfor %}
+{% endblock %}

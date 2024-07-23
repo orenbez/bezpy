@@ -1,0 +1,4 @@
+<root rootattr="attr_A">
+    <tag name1="attr_B" foo="bar">value</tag>
+    <tag3 name="attribute1">value2</tag3>
+</root>

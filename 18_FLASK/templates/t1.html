@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{value}}</title>
+</head>
+<body>
+    <h3>{{value}}</h3>
+	{% if value == "Testing" %}
+        <p>TRUE->{{value}}</p>
+    {% else %}
+        <p>FALSE->{{value}}</p>
+    {% endif %}
+
+	{% for i in range(10) %}
+        <p>{{i}}: {{other}}</p>
+    {% endfor %}
+</body>
+</html>

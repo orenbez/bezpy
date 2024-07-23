@@ -1,0 +1,41 @@
+key a = value
+key b : value
+key c=value
+key d:value
+"key e"=value
+"key f"=value
+
+key01=value
+key02=value,
+key03={key=value}
+key04={key04=value,}
+
+"key05"="value"
+"key06"="value",
+key07={"key"="value"}
+key08={"key"="value",}
+
+key09:value
+key10:value,
+key11:{key:value}
+key12:{key12:value,}
+
+
+"key13"=value
+"key14"=value,
+key15={"key"=value}
+key16={"key"=value,}
+
+key17="value"
+key18="value",
+key19={key="value"}
+key20={key="value"},
+
+
+# 'key22':'value'   //  <----------- gives error
+# 'key23':'value',  // <----------- gives error
+# 'key24'=value     //  <----------- gives error
+# 'key25'=value,    // <----------- gives error
+
+key26:'value'       //  stores "'value'"
+key27='value',      //  stores "'value'"

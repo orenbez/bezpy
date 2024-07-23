@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<root rootattr="attr_A">
+    <tag name1="attr_B">value</tag>
+    <tag name="attribute1" name2="attribute2">x
+        <subtag name="subattrb">subvalue</subtag>
+    </tag>
+    <tag3 name="attribute1"></tag3>
+</root>

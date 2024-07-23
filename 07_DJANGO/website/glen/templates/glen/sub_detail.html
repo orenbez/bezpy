@@ -1,0 +1,8 @@
+{% extends "glen\main.html" %}
+
+{% block title %}The Detail Page On a Specific Sub{% endblock %}
+{% block content %}
+    Sub Detail Page:<br>
+    Sub Name: {{ sub.sub_name }}<br>
+    Super Name: {{ sub.super.name }}
+{% endblock %}

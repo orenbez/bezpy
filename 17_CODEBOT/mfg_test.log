@@ -1,0 +1,19 @@
+
+---Begin Test---
+ID: 490040001050423047323320
+BTN-1 pressed, test sensors...
+LS-0: off=4079, on=167 | pass=True
+LS-1: off=4083, on=181 | pass=True
+LS-2: off=4077, on=170 | pass=True
+LS-3: off=4078, on=162 | pass=True
+LS-4: off=4072, on=175 | pass=True
+Prox: (True, True)
+Accel: id=True, self=True
+VBAT: 5.123784v pass=True
+BTN-0 pressed, test motors...
+MOT-0: ticks=30, pass=True
+MOT-1: ticks=29, pass=True
+*** END - PASS ***
+
+---Begin Test---
+ID: 490040001050423047323320

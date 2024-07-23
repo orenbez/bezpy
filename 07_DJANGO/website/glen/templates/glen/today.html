@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      Hello World!!!<p>Today is {{ today }}</p>
+      weekdays ={{ weekdays }} <br>
+      names ={{ names }}<br>
+      Here are the Weekdays looped:<br>
+      {% for d in weekdays %}
+      {{ d }},
+      {% endfor %} <br>
+      First Name = {{ names.First }}<br>  {# Note dot operator is used, not names['First'] like python #}
+      Second Name = {{ names.Second }}<br>
+</body>
+</html>

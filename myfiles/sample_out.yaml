@@ -1,0 +1,9 @@
+address:
+  city: New York
+  state: NY
+  street:
+    line1: 11 E 30th St
+    line2: APT 1
+  zip: 10016
+name: Colbeh
+type: Persian

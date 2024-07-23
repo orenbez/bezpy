@@ -1,0 +1,68 @@
+import inspect    # from standard-library, provides an interface to the Python debugger
+
+class A(object):
+    def methd(self):
+        pass
+
+class B(A):
+    pass
+class C(B):
+    pass
+
+obj = A
+inspect.isclass(obj)          # True - inspects object and returns bool
+
+obj = A().methd
+inspect.ismethod(obj)         # True - inspects object and returns bool
+
+inspect.iscode(obj)           # False - inspects object and returns bool
+
+import math
+obj = math
+inspect.ismodule(obj)         # True - inspects object and returns bool
+
+
+def fn():
+    pass
+obj = fn
+inspect.isfunction(obj)        # True - inspects object and returns bool
+
+obj = sum                     # built-in function sum()
+inspect.isbuiltin(obj)        # True - inspects object and returns bool
+
+
+import math
+inspect.getmembers(math)        # shows the member functions of any module or object
+inspect.signature(math.perm)    # returns signature  <Signature (n, k=None, /)>
+
+
+# getsource(): returns the source code of a module, class, method, or a function
+
+from dataclasses import dataclass
+inspect.getsource(dataclass)      # returns any method librarysource code as a string. This will not work for built-in classes e.g. int
+
+
+def fun(a, b):
+    return a * b
+inspect.getsource(fun)           # 'def fun(a, b):\n    return a * b\n'
+
+
+# getmodule(): This method returns the module of a particular object
+import collections
+inspect.getmodule(collections)    # <module 'collections' from 'C:\\Users\\orenb\\AppData\\Local\\Programs\\Python\\Python310\\lib\\collections\\__init__.py'>
+
+
+# stack(): This method helps in examining the interpreter stack or the order in which functions were called.
+inspect.stack(context=1)          # Return a list of frame records for the caller’s stack
+inspect.stack()                   # same as above
+
+
+prev_frame = inspect.currentframe().f_back   # returns previous frame
+filename, line_number, function_name, lines, index = inspect.getframeinfo(prev_frame)
+inspect.getmodule(prev_frame)  # returns module of previous frame
+
+
+# getdoc(): The getdoc() method returns the documentation of the argument in this method as a string.
+inspect.getdoc(math.perm)  #  'Number of ways to choose k items from n items without repetition and with order ...
+
+inspect.getmro(C)  # (<class '__main__.C'>, <class '__main__.B'>, <class '__main__.A'>, <class 'object'>)

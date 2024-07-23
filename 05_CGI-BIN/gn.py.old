@@ -1,0 +1,74 @@
+#!/usr/bin/python
+"""
+https://darksky.net/dev/account
+User: oren.bezalely@gmail.com
+Pwd:  badge7383 or 
+
+"""
+
+import json
+import sys  # print(sys.version_info[:]) prints full version of python
+import cgi  # used for retrieving POST/GET
+import time
+import datetime
+#import cgbit #displays error messages
+#cgbit.enable()
+
+print ("Content-type:text/html\r\n\r\n")
+print ('<html>')
+print ('<head>')
+print ('<title>Weather Report</title>')
+print ('</head>')
+print ('<body>')
+print ('<h2>Live Weather Report For 36 Franklin Place</h2>')
+
+locu_api_key = '8f4aab25bf22e16fd83edca15dac8029'
+url = 'https://api.darksky.net/forecast/8f4aab25bf22e16fd83edca15dac8029/40.8039314,-73.730418'
+#https://api.darksky.net/forecast/[key]/[latitude],[longitude]
+
+
+if sys.version_info[0] == 3:
+	import requests
+	r = requests.get(url)
+	json_obj = r.json()
+else: # FOR VERSION 2
+	import urllib2
+	json_obj = json.load(urllib2.urlopen(url))
+	
+
+#print (json_obj['currently'])
+#for i,j in json_obj['currently'].items():
+#	print (str(i) + '=' + str(j))
+#print (json_obj)
+# print (r.text) prints full api response from url which is json
+
+
+print ('<b>Coordinates:</b> ' + str(round(json_obj['latitude'],1)) + ',' + str(round(json_obj['longitude'],1)) + '<br>')
+print ('<b>Location:</b> ' + str(json_obj['timezone']) + '<br>')
+print ('<b>UTC Time:</b> ' + str(datetime.datetime.utcfromtimestamp(float(json_obj['currently']['time']))) + '<br>')
+# print (int(time.time())) this prints current unix time
+print ('<b>Current Weather:</b> ' + str(json_obj['currently']['summary']) + '<br>')
+print ('<b>Precipitation:</b> ' + str(json_obj['currently']['precipProbability']*100) + '%<br>')
+print ('<b>Temperature:</b> ' + str(json_obj['currently']['temperature']) + 'F<br>')
+print ('<b>Apparent Temperature:</b> ' + str(json_obj['currently']['apparentTemperature']) + 'F<br>')
+print ('<b>Cloud Cover:</b> ' + str(json_obj['currently']['cloudCover']*100) + '%<br>')
+
+ustr = json_obj['minutely']['summary']
+astr = ustr.encode("ascii","replace").replace('?','-')
+print ('<b>Hourly Report:</b> ' + astr + '<br>')
+
+ustr = json_obj['hourly']['summary']
+astr = ustr.encode("ascii","replace").replace('?','-')
+print ('<b>Daily Report:</b> ' + astr + '<br>')
+
+
+
+ustr = json_obj['daily']['summary']
+astr = ustr.encode("ascii","replace").replace('?','-')
+print ('<b>Weekly Report:</b> ' + astr + '<br>')
+
+
+
+
+print ('</body>')
+print ('</html>')

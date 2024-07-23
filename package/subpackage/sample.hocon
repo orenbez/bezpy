@@ -1,0 +1,31 @@
+// simple configuration
+application=myapp
+// object configuration
+dev: {
+  host: dev.com
+  port: 8080
+}
+// object configuration
+test {
+  host: test.com
+  port: 8080
+}
+role: {
+ id: 24
+ name: 'admin'
+ active: false
+}
+// array declaration
+all: {
+    roles: [
+    admin
+    sales
+    support
+    ]
+}
+// substitutions
+devprofile {
+      hostname: dev
+     
+    }
+ devpath: ${devprofile.hostname}:8080

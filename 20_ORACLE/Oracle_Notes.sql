@@ -546,6 +546,10 @@ WITH TBL1 AS (SELECT * FROM ...),
 	 TBL3 AS (SELECT * FROM TBL2)
 SELECT * FROM TBL3
 
+-- ===========================================================================
+-- WHERE EXISTS
+-- ===========================================================================
+SELECT * FROM TBL_1 T1 WHERE EXISTS (SELECT 1 FROM TBL_2 T2 WHERE T2.ID = T1.ID)
 
 -- ===========================================================================
 -- JSON_VALUE / JSON_TABLE
@@ -664,6 +668,8 @@ SELECT TIMESTAMP'1962-09-23 03:23:34.234' FROM DUAL;  -- Space allowed after TIM
 SELECT TO_TIMESTAMP('01/14/2022 15:46:40', 'MM/DD/YYYY HH24:MI:SS') FROM DUAL;
 SELECT TRUNC(TIMESTAMP'1962-09-23 03:23:34.234') FROM DUAL;  --RETURNS DATE ONLY
 SELECT TRUNC(SYSDATE-5) FROM DUAL;   -- use for comparison  WHERE CREATE_DATA <= TRUNC(SYSDATE-5)   created within 5 days
+SELECT TRUNC(SYSDATE- INTERVAL '5' DAY) FROM DUAL;  -- SAME AS ABOVE
+
 SELECT DATE'1974-02-20' FROM DUAL;   -- SPACE ALLOWED AFTER DATE
 
 SELECT SYSDATE,                         -- 14-JUN-22
@@ -678,12 +684,25 @@ from dual;
 
 
 -- ===========================================================================
+-- TRUNC(Date)
+-- ===========================================================================
+SELECT TRUNC(TO_TIMESTAMP('10/27/2092 00:00:01', 'MM/DD/YYYY HH24:MI:SS')) FROM DUAL;  -- 2092-10-27
+SELECT TRUNC(TO_TIMESTAMP('10/27/2092 00:00:00', 'MM/DD/YYYY HH24:MI:SS')) FROM DUAL;  -- 2092-10-27
+SELECT TRUNC(TO_DATE('27-OCT-92','DD-MON-YY'), 'DAY') FROM DUAL;     -- 2092-10-26   'fmt' = 'DAY' is the default
+SELECT TRUNC(TO_DATE('27-OCT-92','DD-MON-YY'), 'MONTH') FROM DUAL;   -- 2092-10-01
+SELECT TRUNC(TO_DATE('27-OCT-92','DD-MON-YY'), 'YEAR')  FROM DUAL;  -- 2092-01-01
+
+-- ===========================================================================
+-- TRUNC(Number)
+-- ===========================================================================
+SELECT TRUNC(2.765,1) FROM dual;     -- 2.7  (i.e. truncate to 1dp)
+SELECT TRUNC(142.465,-2) FROM dual;  -- 100  (i.e. truncate to -2dp = floor to nearest 100s)
+
+-- ===========================================================================
 -- REGEXP_LIKE()  -  regex comparison, extension of 'LIKE'
 -- ===========================================================================
 SELECT * FROM my_table
-
 WHERE REGEXP_LIKE(column_1, '^my_string$', 'i');  -- i (ignore case)
-
 
 -- ===========================================================================
 -- SUBSTR(COL, START, [END])   - returns a substring

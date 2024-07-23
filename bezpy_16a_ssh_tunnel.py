@@ -1,6 +1,5 @@
 #  Office IP "167.206.221.74" has been whitelisted for ssh in firewall
 # https://medium.com/better-programming/how-to-set-up-multiple-ssh-keys-ae6688f76570
-# TRY THIS: https://hackingandslacking.com/ssh-scp-in-python-with-paramiko-6f864d48c1aa?source=bookmarks---------1----------------------------
 
 # Requires `pip install sshtunnel`, `pip install pymysql`
 from sshtunnel import SSHTunnelForwarder # , SSH_TIMEOUT, TUNNEL_TIMEOUT

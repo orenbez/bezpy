@@ -4,6 +4,22 @@
 
 /* Example create */
 
+create table tablename
+(
+  column1 dataType [constraint],
+  column2 dataType [constraint],
+  column3 dataType [constraint]
+);
+
+Datatypes Constraints:
+--NOT NULL - Ensures that a column cannot have a NULL value
+--UNIQUE - Ensures that all values in a column are different
+--PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+--FOREIGN KEY - Uniquely identifies a row/record in another table
+--CHECK - Ensures that all values in a column satisfies a specific condition
+--DEFAULT - Sets a default value for a column when no value is specified
+--INDEX - Used to create and retrieve data from the database very quickly
+
 CREATE TABLE Customers (
 CustomerID	  int IDENTITY(1,1) PRIMARY KEY,   /* IDENTITY increments the primary key starting from 1, interval 1 */
 CustomerName  varchar(255) NOT NULL,	
@@ -48,6 +64,11 @@ ADD tax_id_number char(9)
 -- DROP COLUMN
 ALTER TABLE Customers
 DROP COLUMN ContactName;
+
+-- MODIFY COLUMN
+ALTER TABLE table_name
+MODIFY COLUMN column_name datatype;
+
 
 -- WARNING the default datatype is 'TEXT' which is a pain to work with and deprecated.  
 -- FOR 'TEXT' need to use 'LIKE' instead of '=' in sql query
@@ -298,6 +319,16 @@ ORDER BY City;
 
 /*The GROUP BY statement is often used with aggregate functions 
 (COUNT, MAX, MIN, SUM, AVG) to group the result-set by one or more columns.*/
+-- SUM () gives the total of all the rows, satisfying any conditions
+-- of the given column, where the given column is numeric.
+-- AVG () gives the average of the given column.
+-- MAX () gives the largest figure in the given column.
+-- MIN () gives the smallest figure in the given column.
+-- COUNT(*) gives the number of rows satisfying the conditions.
+
+
+
+
 
 
 e.g.
@@ -519,6 +550,13 @@ SELECT auto_policy_id, Counter FROM (SELECT  auto_policy_id, count(customer_id) 
 
 
 
+/*****Transact-SQL****/
+DECLARE	@return_value int;
+SET @return_value=1;
+SELECT	'Return Value' = @return_value;
+
+
+
 
 /* PRINT A FULL COLUMN AS A LIST */
 /*SQL SERVER 2017 */
@@ -720,6 +758,11 @@ SELECT
 FROM bill
 
 
+/****************************************************************************************************/
+/* The SQL Server ISNULL() function lets you return an alternative value when an expression is NULL */
+/****************************************************************************************************/
+SELECT ProductName, UnitPrice * (UnitsInStock + IFNULL(UnitsOnOrder, 0)) FROM Products
+
 /***********************************************************************/
 /* T-SQL Loop Through 'YourField' using SQL Query with CURSOR   
 /* NOTE THIS TAKES A LONG TIME - BETTER TO DO THE LOOPING IN PYTHON    */
@@ -883,20 +926,14 @@ GO
 ENABLE TRIGGER TR_MyTrigger ON tblActor
 GO
 
-
-
-
 /* CREATES REGULAR INDEX ON COLUMN=POLICY_SUFFIX */
 CREATE INDEX idx_POLICY_SUFFIX ON POLICY_COVERAGE2 (POLICY_SUFFIX);  
 
 /* CREATES FASTER REGULAR INDEX BUT ALL VALUES MUST BE UNIQUE IN THE COLUMN*/
 CREATE UNIQUE INDEX idx_POLICY_SUFFIX ON POLICY_COVERAGE2 (POLICY_SUFFIX); 
 
-
 /* CREATES REGULAR INDEX ON MULTIPLE COLUMNS (note the order is important*/
 CREATE INDEX idx_last_name_first_name on UserTable (last_name, first_name) 
-
-
 
 /* CREATES CLUSTERED INDEX, THIS IS FASTER - UNIQUE ROWS and they are ordered with the
     CLUSTERED command for quicker lookup can only cluster one column though */
@@ -1028,3 +1065,31 @@ SELECT
   STDDEV_SAMP(amount) as stddev_sample_amount,
   STDDEV_POP(amount) as stddev_pop_amount,
 FROM bill
+
+
+/********SQL SERVER STORED PROCEDURE **********************************************/
+
+/* create */
+USE databasename;
+GO
+CREATE PROCEDURE SP_mystoredproc
+    @LastName nvarchar(50),   /* parameters */
+    @FirstName nvarchar(50)
+AS
+
+    SET NOCOUNT ON;
+    SELECT FirstName, LastName, Department
+    FROM table
+    WHERE FirstName = @FirstName AND LastName = @LastName;
+GO
+
+/* right click on Programmability/dbo.SP_mystoredproc to modify or execute */
+
+/* to execute in sql run …*/
+EXEC SP_MyStoredProc ‘David’, ‘Jones’
+
+/* To execute in python */
+cursor.execute("exec sp_mystoredproc(‘David’, 'Jones')")
+
+
+

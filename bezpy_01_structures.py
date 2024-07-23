@@ -846,11 +846,12 @@ b = "\""    # This is escaped
 
 # ======================================================================================================================
 # OLD METHOD like C's printf()  ... format is used to format display output
+# NOTE: % string evaluation is 'lazy' and preferred for logging
 # ======================================================================================================================
 # %s insert string, 
 # %d insert decimal values, 
 # %f insert floating-point values 
-str1 = "Name: %s, Age: %d, Weight: %.2f kg" % ('Zara', 21, 33.3)
+str1 = "Name: %s, Age: %d, Weight: %.2f kg" % ('Zara', 21, 33.3)  #   'Name: Zara, Age: 21, Weight: 33.30 kg'
 
 # ======================================================================================================================
 # NEW METHOD - mystr.format() is used to format display output

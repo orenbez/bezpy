@@ -89,6 +89,14 @@ logging.critical('Critical message')
 # 2024-02-16 07:56:50|MainThread|ERROR|root|64|Error message
 # 2024-02-16 07:56:51|MainThread|CRITICAL|root|65|Critical message
 
+# The below are equivalent. Using % String evaluation is lazy and preferred to f-strings for logging.
+logging.info("Name: %s, Age: %d, Weight: %.2f kg" % ('Zara', 21, 33.3))
+logging.info("Name: %s, Age: %d, Weight: %.2f kg", 'Zara', 21, 33.3)
+
+# Generates ...
+# 2024-07-23 16:39:03|MainThread|INFO|root|1|Name: Zara, Age: 21, Weight: 33.30 kg
+# 2024-07-23 16:39:15|MainThread|INFO|root|1|Name: Zara, Age: 21, Weight: 33.30 kg
+
 
 # Capturing Stack Traces with exc_info
 try:

@@ -2,7 +2,7 @@
 # 11/04/21 investpy-1.0.7
 # https://pypi.org/project/investpy/
 # investpy is a Python package to retrieve data from Investing.com
-# SEE bezpy_24_yahoo_finance.py for better tools
+# SEE bezpy_24a_yahoo_finance.py for better tools
 
 from datetime import datetime as dt
 from investpy import get_stock_historical_data, get_bond_historical_data

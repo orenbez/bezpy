@@ -978,7 +978,6 @@ tuple([['a'], ['b'], ['c']])  # (['a'], ['b'], ['c'])
 # note you can use the library 'dis' (disassemble) to convert a function to machine instructions
 
 # I think these libraries are used for parsing python code ...
-# built-in library signal: This module provides support for handling signals. e.g. signal.CTRL_C_EVENT
 # built-in library symbol: This module provides support for Python symbol constants e.g. symbol.del_stmt == 276
 # built-in library token: This module provides support for Python token constants e.g. token.COMMA == 12
 # built-in library syslog: This module is for an interface to Unix

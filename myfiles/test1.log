@@ -1,19 +1,2 @@
-2024-02-16 15:55:51|MainThread|INFO|root|81|Info message
-2024-02-16 15:55:51|MainThread|WARNING|root|82|Warning message
-2024-02-16 15:55:51|MainThread|ERROR|root|83|Error message
-2024-02-16 15:55:51|MainThread|CRITICAL|root|84|Critical message
-2024-02-16 15:55:51|MainThread|ERROR|root|97|Exception occurred
-Traceback (most recent call last):
-  File "c:\bezpy\bezpy\bezpy_28_logging.py", line 95, in <module>
-    c = 3 / 0
-ZeroDivisionError: division by zero
-2024-02-16 15:55:51|MainThread|INFO|root|8|Hello from mylog.py
-2024-02-16 15:55:51|MainThread|DEBUG|root|117|Debug message
-2024-02-16 15:55:51|MainThread|DEBUG|root|118|Debug message
-2024-02-16 15:55:51|MainThread|INFO|another|146|new log in the new format
-2024-02-16 15:55:51|MainThread|WARNING|another|147|new log in the new format
-2024-02-16 15:55:51|MainThread|WARNING|root|168|this is from l0
-2024-02-16 15:55:51|MainThread|WARNING|xxx|169|this is from l1
-2024-02-16 15:55:51|MainThread|WARNING|xxx.yyy|170|this is from l2
-2024-02-16 15:55:51|MainThread|WARNING|root|173|test
-2024-02-16 15:55:51|MainThread|WARNING|root|174|test
+2024-07-23 16:39:03|MainThread|INFO|root|1|Name: Zara, Age: 21, Weight: 33.30 kg
+2024-07-23 16:39:15|MainThread|INFO|root|1|Name: Zara, Age: 21, Weight: 33.30 kg

@@ -119,6 +119,7 @@ a == b   #  True
 # __doc__                       stores the doc string
 # __bool__                      to define truthiness of the class instance
 # __getitem__                   to implement slicing/indexing
+# __setitem__                   for setting indexed element of a container
 # __call__(self)                to execute an object as a function
 # __class_getitem__             to implement [] on a class-level
 # ======================================================================================================================

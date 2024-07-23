@@ -572,3 +572,34 @@ assert MyList[int] == "MyList[int]"
 # see https://www.youtube.com/watch?v=NAQEj-c2CI8&list=PLzMcBGfZo4-kwmIcMDdXSuy_wSqtU-xDP&index=3
 # see https://python-course.eu/oop/metaclasses.php
 # ======================================================================================================================
+
+
+# ======================================================================================================================
+# __getitem__(key)
+# dunder method for accessing indexed elements of a container or for defining a use for invoking square brackets
+# on an instance. subscription/indexer with square brackets will call this dunder method in the class definition
+# ======================================================================================================================
+# __setitem__(key, value)
+# dunder for setting indexed element of a container
+# ======================================================================================================================
+x = {'abc': 1}
+x.__getitem__('abc')  # equivalent to  x['abc']
+y = [1, 2, 3]
+y.__getitem__(0)  # equivalent to y[0]
+y.__setitem__(2, 4)  # equivalent to y[2] = 4
+
+
+class MyClass:
+    def __init__(self, a):
+        self.a = a
+        self.d = {}
+
+    def __getitem__(self, item):
+        return self.d[item.upper()]
+    def __setitem__(self, key, value):
+        self.d[key.upper()] = value
+
+c = MyClass(4)
+c['ONE'] = 1  # invokes __setitem__
+c.a  # returns 4
+c['one']  # returns 1, invokes __getitem__

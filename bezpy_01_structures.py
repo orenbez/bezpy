@@ -440,13 +440,14 @@ for i in range(len(x)):
 # ======================================================================================================================
 # SETS are mutable, easiest way to handle duplicates
 # elements within sets get hashed => quicker look up, note Python sets can only include hashable objects
+# they do not need to be of uniform data type
 # 5 in {SET}   # Lookup Time = O(1)
 # 5 in [LIST]  # Lookup Time = O(n)
 # ======================================================================================================================
 x = set()  #creates empty set.  Note {} will be interpreted as empty dicionary
-x = {5,3}
+x = {5, 3}
 x.add(4)                    # x = {5,3,4}  Modifies x by adding SINGLE element but Returns None
-y = {1,2,3}.union({5,3,4})  # Returns {1, 2, 3, 4, 5}
+y = {1, 2, 3}.union({5, 3, 4})  # Returns {1, 2, 3, 4, 5}
 
 # | (UNION)
 # & (INTERSECTION)
@@ -459,14 +460,14 @@ y = {1,2,3}.union({5,3,4})  # Returns {1, 2, 3, 4, 5}
 # >   (IS PROPER SUPERSET)
 # >=  (IS SUPERSET)
 
-x = {1, 2, 3, 4, 5} & {2,5,9} # {2, 5}
-z = {1, 2, 3, 4, 5} - {5,11}  # {1, 2, 3, 4}  
+x = {1, 2, 3, 4, 5} & {2, 5, 9} # {2, 5}
+z = {1, 2, 3, 4, 5} - {5, 11}  # {1, 2, 3, 4}
 
-s = [1,2,3,4,4]
+s = [1, 2, 3, 4, 4]
 s1 = set(s)   # removes the duplicate 4 from the list
-s2 ={4,5,6}
+s2 ={4, 5, 6}
 s1 <= s2      # returns true if s1 is a subset of s2
-s3 = {5,7}
+s3 = {5, 7}
 
 x = s1.union(s2)    # Returns union of the sets but s1 is not modified
 x = s1.union(s2,s3) # Returns s1 | s2 | s3
@@ -476,13 +477,11 @@ s1 = s2.copy()      # set s1 is equivalent to s2
 s1 = s2             # set s1 is a reference to s2  (same id value) since sets are mutable
 
 
-
 def find_dupes(x: list) -> set:
     """Method to find duplicates in a list"""
     return set([i for i in x if x.count(i) > 1])
 
 find_dupes([1, 2, 3, 3, 4, 5, 5, 5, 6, 7, 8])  #  {3, 5}
-
 
 
 # ======================================================================================================================
@@ -1310,7 +1309,7 @@ switch4(5) # returns 15
 # see bezpy_92_radon.py  Reduce Cyclomatic Complexity
 
 # ======================================================================================================================
-# match, case keywords introduced in python 3.10   
+# match, case keywords introduced in python 3.10.  Uses a declarative style.
 # ======================================================================================================================
 # def get_mood(day):
 #     match day:

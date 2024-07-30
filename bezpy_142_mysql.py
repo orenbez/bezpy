@@ -21,9 +21,7 @@ cr.commit()  # commits database changes for UPDATES/INSERTS/DELETES - else will 
 cr.close()
 conn.close()
 
-
 # ======================================================================================================================
-
 # Alternatively use mysql-connector-python
 # https://www.w3schools.com/python/python_mysql_getstarted.asp
 
@@ -73,3 +71,15 @@ val = [
 cr.executemany(sql, val)
 mydb.commit()
 print(cr.rowcount, "was inserted.")
+
+
+# ======================================================================================================================
+# Alternatively use pymysql
+import pymysql # requires `pip install pymysql`
+connection_string = dict(host='localhost', user='root', password='pass')
+conn = pymysql.connect(*connection_string)
+cr = conn.cursor
+cr.execute('SHOW DATABASES')
+db_list = [db for db in cr]
+cr.close()
+conn.close()

@@ -180,6 +180,7 @@ with open(r'.\myfiles\output2.txt','r+') as f:  # opened for read and/or write
     f.write(data.replace('OLD','NEW'))  # or use regex
     f.truncate()                        # places end-pointer at current pointer position.
 
+# f.seek(8, 2) will advance 8 bytes from byte 2
 
 # Edit file. insert arrow for every line starting with 'XXX'
 f = open(r'.\myfiles\LoremIpsum.txt', 'r+')

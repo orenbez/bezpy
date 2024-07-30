@@ -5,8 +5,12 @@
 # Setting up coroutines with asyncio is an alternative to threading
 # threads - OS decides on context switching, locks determine when you can't switch to another thread
 # coroutines - you decide on the switch, 'await' determines when you can switch to another coroutine
-
 # the word coroutine is used in contrast to a normal subroutine which is evaluated synchronously
+
+
+# asyc/asyncio allows concurrency within a single thread. This gives you, as the developer, much more fine grained
+# control of the task switching and can give much better performance
+# for concurrent I/O bound tasks than Python threading.
 
 # New to python 3.10 functions aiter(), anext()  asynchronous counterparts to iter() and next()
 # anext() raises an StopAsyncIteration exception when iteration has ended

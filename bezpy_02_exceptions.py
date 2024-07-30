@@ -28,14 +28,25 @@ pet_name(pet='dog',name='fred')    # keyword arguments don't have to be ordered
 # operators '*' to distinguish keyword only parameters that follow '*' (introduced in python 3.8)  i.e. e & f
 # the function definition will confirm the 'signature' of the function.  i.e. the correct number / type of parameters
 # ======================================================================================================================
-# def my_func(a, b, /, c, d, *, e, f):   # c & d have no restrictions
-#     return a+b+c+d+e+f
-#  
+def f1(p1, p2, /):  # only accepts positional arguments
+    pass
+
+
+def f2(*, k1, k2):  # only accepts keyword arguments
+    pass
+
+
+def f3(p1, p2, /, a1, *, k1, k2):    # a1 can be positional or keyword
+    pass
+
+def my_func(a, b, /, c, d, *, e, f):   # c & d have no restrictions, except a positional arg can not follow keyword arg
+    return a+b+c+d+e+f
+
 # my_func(1, 2, 3, 4, 5, 6)           # invalid as e and f are keyword-only
-# #my_func(a=1, b=2, 3, 4, e=5, f=6)  # invalid as a and b are position-only
-# my_func(1, 2, c=3, 4, e=5, f=6)     # returns 21
-# my_func(1, 2, c=3, d=4, e=5, f=6)   # returns 21
-# my_func(1, 2, 3, d=4, e=5, f=6)     # returns 21
+# my_func(a=1, b=2, 3, 4, e=5, f=6)   # invalid as a and b are position-only
+# my_func(1, 2, c=3, 4, e=5, f=6)     # SyntaxError: positional argument follows keyword argument
+my_func(1, 2, c=3, d=4, e=5, f=6)     # returns 21
+my_func(1, 2, 3, d=4, e=5, f=6)       # returns 21
 
 
 # ======================================================================================================================

@@ -7,7 +7,7 @@
 # ======================================================================================================================
 # monkeypatch
 # ======================================================================================================================
-# The term monkeypatch in python refers to dynamic modifications of a class or module at runtime
+# The term monkeypatch in python refers to dynamic modifications of a class or module at runtime, adding attributes or methods
 # For instance, consider a class that has a method get_data. This method does an external lookup 
 # (on a database or web API, for example), and various other methods in the class call it. However, in a unit test, 
 # you don't want to depend on the external data source - so you dynamically replace the get_data method with a stub 

@@ -129,11 +129,13 @@ any(x)  # returns 'True' if ANY value in iterable 'x' is True, else displays Fal
 all(x)  # returns 'True' if ALL value in iterable 'x' is True, else displays False
 
 # with list comprehensions ...
-
 special_chars = [':', '/', ',']
 x = "xxxxx/xxxxx"
 any(char in x for char in special_chars)   # <--- doesn't require square brackets
 
+
+x = [1, 3, 6]
+assert all(isinstance(digit, int) for digit in x)  # all values are True
 
 
 # ======================================================================================================================
@@ -303,12 +305,25 @@ code = 'int({}).__{}__({})'.format(x, func_name, y)  # 'int(3).__add__(4)'
 # ======================================================================================================================
 # compile() / exec()
 # ======================================================================================================================
-codeInString = 'a = 5\nb=6\nsum=a+b\nprint("sum =",sum)'
-codeObejct = compile(codeInString, 'sumstring', 'exec')
-exec(codeObejct)  # returns sum = 11
+code_in_string = """
+a = 5
+b = 6
+print(a + b)
+"""
+code_object = compile(source=code_in_string, filename='sumstring.py', mode='exec')
+exec(code_object)  # returns 11
 
 code = 'x=1; x +=1; print(x)'
 exec(code)   # eval(code) would fail
+
+from datetime import *        # global scope namespace
+name = 'David'                # local scope namespace
+code_in_string = """
+print(f'{name}, today is {date.today()}')
+"""
+allowed_globals = {'date': date}
+allowed_locals = {'name': name}
+exec(code_in_string, allowed_globals, allowed_locals)
 
 
 # ======================================================================================================================

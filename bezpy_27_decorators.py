@@ -115,6 +115,39 @@ class Foo2:
 x = Foo2() # returns __init__
 x()        # returns __call__
 
+
+class Foo3:
+    def __init__(self, name):
+        self.name = name
+
+    def __call__(self, msg):  # allows you to execute an object as a function
+        print(f'{self.name} says {msg}')
+
+
+x = Foo3(name='Paul')  # initialize
+x('hi')  # returns 'Paul says hi'
+
+# func()  is equivalent to func.__call__()
+func = lambda x, y: x + y
+func(8, 9)  # 17
+func.__call__(8, 9)  # 17
+
+# ======================================================================================================================
+# 'access modifiers' and 'name mangling'
+# ======================================================================================================================
+class Access:
+    def __init__(self, a, b, c):
+        self.public = a
+        self._protected = b
+        self.__private = c
+
+v = Access('A', 'B', 'C')
+v.public
+v._protected
+# v.__private   # would fail with ... AttributeError: 'Access' object has no attribute '__private'
+v._Access__private  # <- - - this is 'name mangling' and will return 'C'
+
+
 # ======================================================================================================================
 # Timer decorator function 'measure_time' is more generic than our_decorator.
 # It can handle functions with any number of arguments *args, *kwargs

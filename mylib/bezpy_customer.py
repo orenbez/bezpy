@@ -79,7 +79,7 @@ class Customer:
 
 
 if __name__ == '__main__':
-    x = Customer('Jeff Knupp', "Bronze", 1000.0, 85000)
+    x = Customer('Jeff Knupp', "Bronze", 1000.0, 85000)    # x is now referred to as an 'object' or 'instance' of Class Customer
     y = Customer('Fred Blogs', "Gold", 10000.0)
     z = Customer('Jason Freedman', "Bronze")
     x2 = Customer('Dave Peters', 'Gold', 10000.0, 85000, 'Gardener')

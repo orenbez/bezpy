@@ -109,6 +109,10 @@ with open('myfiles\output2.txt', 'a') as f:
 f = open('myfiles\output2.txt')  # default is read in text mode (see below)
 f.close() # need explicit close since no 'with' command was used
 
+# as of python 3.10 can use syntax below ...
+# with (open('output.log', 'w') as fout, open('input.csv') as fin):
+#     fout.write(fin.read())
+
 
 # f = open(file_name, 'r', encoding='utf-8') # Opens file stream in mode 'r' expecting unicode characters
 # open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)

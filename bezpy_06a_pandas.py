@@ -12,10 +12,8 @@
 # see https://www.tutorialspoint.com/python_pandas/
 # python -m pip install --upgrade --pre pandas==1.0.0rc0
 from decimal import Decimal
-from datetime import timedelta as td
 from datetime import datetime as dt
 from datetime import date
-import sys
 from time import time
 
 import pandas as pd
@@ -1053,6 +1051,27 @@ df = pd.DataFrame({('x', 1): [1, 2, 3], ('x', 2): [4, 5, 6]})
 # 1  2  5
 # 2  3  6
 df[('x', 2)].values   #  array([4, 5, 6], dtype=int64)
+
+
+# ======================================================================================================================
+# pandas pipe: dataframe.pipe(func, args, kwargs)
+# ======================================================================================================================
+# func	    Required. A function to apply to the DataFrame.
+# args	    Optional, An iterable object with positional arguments that can be used in the function
+# kwargs	Optional. A dictionary with keyword arguments that can be used in the function
+
+def change_age(x):
+  x['age'] = [10, 20, 30]
+  return x
+
+data = {
+  "name": ["Sally", "Mary", "John"],
+  "age": [50, 40, 30]
+}
+
+df = pd.DataFrame(data)
+df.pipe(change_age)   # modifies df in-place, and returns new dataframe
+
 
 # ======================================================================================================================
 # Pandas concat Vs append Vs join Vs merge

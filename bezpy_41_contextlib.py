@@ -1,10 +1,11 @@
-# see https://medium.com/better-programming/context-managers-in-python-go-beyond-with-open-as-file-85a27e392114
-
+# ======================================================================================================================
 # Context management - Using the 'with' operator
-
-
+# ======================================================================================================================
+# see https://medium.com/better-programming/context-managers-in-python-go-beyond-with-open-as-file-85a27e392114
+#
 # ======================================================================================================================
 # Method 1: using __exit__, __enter__ dunder methods
+# ======================================================================================================================
 class Divide:
     def __init__(self, num1, num2):
         self.num1 = num1
@@ -12,7 +13,7 @@ class Divide:
 
     def __enter__(self):
         print("Inside __enter__")
-        return self
+        return self                # <- - - '__enter__' must return self
 
     def __exit__(self, exc_type, exc_value, traceback):
         print("Inside __exit__")
@@ -21,13 +22,38 @@ class Divide:
         print("Traceback:", traceback, '\n')
         return True   # <------ this is optional to prevent exceptions from crashing program
 
-    def divide_by_zero(self):
-        # causes ZeroDivisionError exception
+    def divide_by_num(self):
+        # causes ZeroDivisionError when divisor is zero, will be handled in __exit__ however
+        # and will not raise exception unless invoked explicitly.
         print(self.num1 / self.num2)
+
+
+with Divide(3, 1) as r:
+    r.divide_by_num()
+
+# Inside __enter__
+# 3.0
+# Inside __exit__
+# Execution type: None
+# Execution value: None
+# Traceback: None
+
+
+with Divide(3, 0) as r:
+    r.divide_by_zero()
+
+# Inside __enter__
+# Inside __exit__
+# Execution type: <class 'ZeroDivisionError'>
+# Execution value: division by zero
+# Traceback: <traceback object at 0x000001BBA4BD4240>
+
 
 # ======================================================================================================================
 # Method 2: Using the @contextmanager decorator  # can implement thread locking within the context manager
+# ======================================================================================================================
 from contextlib import contextmanager   # BUILT-IN LIBRARY
+
 
 # No parameters
 @contextmanager
@@ -36,6 +62,7 @@ def my_context():
     yield
     print("Destroy the context")
 
+
 # With parameter
 @contextmanager
 def context_manager_example(x):
@@ -43,41 +70,23 @@ def context_manager_example(x):
     yield x
     print("Destroy the context")
 
-# ======================================================================================================================
-# Sample Decorator
-def invocation_log(func):
-    def inner_func(*args, **kwargs):
-        print(f'Before Calling {func.__name__}')
-        return_val = func(*args, **kwargs)
-        print(f'After Calling {func.__name__}')
-    return inner_func
 
-@invocation_log
-def say_hello(name):
-    print(f"Hello, {name}!")
-# ======================================================================================================================
+with my_context():
+    print('test')
+# Create the context
+# test
+# Destroy the context
 
 
+with context_manager_example(5) as val:
+    print(f'val={val}')  # returns 5
+    print("Run operations within context")
 
-if __name__ == '__main__':
-
-    with Divide(3, 1) as r:
-        r.divide_by_zero()
-
-    with Divide(3, 0) as r:
-        r.divide_by_zero()
+# Create the context
+# val=5
+# Run operations within context
+# Destroy the context
 
 
-    say_hello('python')
 
-    with my_context():
-        print('test')
-
-    with context_manager_example(5) as val:
-        print(f'val={val}')  # returns 5
-        print("Run operations with the context")
-
-    # as of python 3.10 can use syntax below ...
-    # with (open('output.log', 'w') as fout, open('input.csv') as fin):
-    #     fout.write(fin.read())
 

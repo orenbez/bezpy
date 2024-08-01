@@ -12,14 +12,14 @@
 # ======================================================================================================================
 # IMPORTED MODULES - namespace conflicts
 # ======================================================================================================================
-from math import (sqrt,          # imports specific functions from standard 'math' library.
-                  exp)           # Use brackets to go over multiple lines.
-import os                         #used to retrieve environment variables but requires path os.function()
-from sys import exit              #imports sys.exit() function, must be called using 'exit()' not 'sys.exit()'
+from math import (sqrt,           # imports specific functions from standard 'math' library.
+                  exp)            # Use brackets to go over multiple lines.
+import os                         # used to retrieve environment variables but requires path os.function()
+from sys import exit              # imports sys.exit() function, must be called using 'exit()' not 'sys.exit()'
 
-# import mylib.mymath             #this would require the full path when you call it mylib.mymath.tripleMe(5)
-# from mylib.mymath import *      #this doesn't require full path but may have namespace conflicts with function 
-                                  #names in the current module and mylib.mymath. The full path can not be used in this case
+# import mylib.mymath             # this would require the full path when you call it mylib.mymath.tripleMe(5)
+# from mylib.mymath import *      # this doesn't require full path but may have namespace conflicts with function
+                                  # names in the current module and mylib.mymath. The full path can not be used in this case
                                   # for the function to be called so just a one word function name can be used more than once
                                   
 from mylib.mymath import triple_me, add3_to_me #This imports two functions from the 'mymath' module (single script)
@@ -34,6 +34,9 @@ from mylib.mymisc import boo      # function boo() will print an output marker t
 # import os as oper_sys  also works
 # os.__file__ will give you path to the module you have imported.
 
+# from x import *   # This will not import hidden methods  e.g. _y
+# must import explicitly e.g.
+# from x import _y
 
 # ======================================================================================================================
 # USER DEFINED FUNCTIONS ...

@@ -82,9 +82,6 @@ def compose_greet_func2(name):
 #     def method_name():
 #         ...
 
-
-
-
 def our_decorator(func):
     def function_wrapper(x):  # <---- note decorator will only work for functions with a single parameter
         print("Before calling " + func.__name__)
@@ -102,6 +99,26 @@ def foo(x):  # foo is the decorated function
 foo("xxx")
 
 function_list = [len, str.isdigit, str.lower]  # functions can be stored in data structures
+
+# ======================================================================================================================
+# Sample Decorator
+# ======================================================================================================================
+def invocation_log(func):
+    def inner_func(*args, **kwargs):
+        print(f'Before Calling {func.__name__}')
+        return_val = func(*args, **kwargs)
+        print(f'After Calling {func.__name__}')
+    return inner_func
+
+
+@invocation_log
+def say_hello(name):
+    print(f"Hello, {name}!")
+
+say_hello('David')
+# Before Calling say_hello
+# Hello, David!
+# After Calling say_hello
 
 # ======================================================================================================================
 # Objects Can Behave Like Functions

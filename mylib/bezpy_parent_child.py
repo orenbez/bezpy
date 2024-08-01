@@ -99,8 +99,8 @@ a == b   #  True
 # Full list here: https://docs.python.org/3/reference/datamodel.html
 # ======================================================================================================================
 # __del__(self)                 Destructor, deletes an object Sample Call : del obj
-# __repr__(self)                Evaluable string representation Sample Call : repr(obj)
-# __str__(self)                 Printable string representation Sample Call : str(obj), or print(obj)
+# __repr__(self)                Evaluable string representation Sample Call : repr(obj) -- see below __repr__ vs __str__
+# __str__(self)                 Printable string representation Sample Call : str(obj)  -- see below __repr__ vs __str__
 # __cmp__ (self, x)             Object comparison Sample Call : cmp(obj, x)
 # __and__(self, x)              Addition overloading of two objects Sample Call: add(a,b)  OR 'a + b'
 # __new__()                     Constructor Method: actually constructs the instance of the class, allocates memory, and returns new instance. Is invoked before the __init__ method
@@ -122,4 +122,14 @@ a == b   #  True
 # __setitem__                   for setting indexed element of a container
 # __call__(self)                to execute an object as a function
 # __class_getitem__             to implement [] on a class-level
+
 # ======================================================================================================================
+# __repr__ vs __str__
+# ======================================================================================================================
+#
+# for an object x:
+#     if only __repr__ defined  -> uses for >>> x, >>> str(x), >>> repr(x), >>> print(x)
+#     if only __str__ defined   -> uses only for >>> str(x) and >>> print(x)
+#     if both are defined       -> >>> str(x) and >>> print(x) uses __str__, >>> x and >>> repr(x) uses __repr__
+
+# note, you can add __repr__ = __str__  to bottom of class

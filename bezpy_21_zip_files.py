@@ -5,9 +5,9 @@
 # also see bezpy_58_zlib for compressing strings, objects
 # ======================================================================================================================
 
+import os
+from zipfile import ZipFile, BadZipFile
 
-from zipfile import ZipFile 
-import os 
   
 def get_all_file_paths(directory): 
   
@@ -26,39 +26,43 @@ def get_all_file_paths(directory):
   
 def main(): 
     # path to folder which needs to be zipped 
-    directory = '.\\myzip'
+    directory = '.\\myzip\\source'
   
-    # calling function to get all file paths in the directory 
+    # calling function to get all file paths in the source directory
     file_paths = get_all_file_paths(directory) 
   
     # printing the list of all files to be zipped 
     print('Following files will be zipped:') 
     for file_name in file_paths: 
-        print(file_name) 
+        print(f'\t{file_name}')
   
     # writing files to a zipfile 
-    with ZipFile(directory + '\\my_zipped_files.zip', 'w') as zip:
+    with ZipFile(directory + '\\..\\my_zipped_files.zip', 'w') as zip:
         # writing each file one by one 
         for file in file_paths: 
             zip.write(file) 
-  
+
     print('All files zipped successfully!')         
-    print(file_paths)
+
   
 if __name__ == "__main__": 
     main()
 
 
-# ======================================================================================================================
-# file_name = "my_zipped_files.zip"
-# zip = ZipFile(file_name, 'r')
-# zip.printdir()   # printing all the contents of the zip file
-# zip.extractall()   # extracting all the files
-# zip.extract('python_files/python_wiki.txt')   # method to extract any file by specifying its path in the zip file.
-# data = zip.read(name_of_file_to_read)   # read some specific file
-# zip.close()
+    file_name = r'C:\\github\\myzip\\my_zipped_files.zip'
+    zip = ZipFile(file_name, 'r')
+    zip.printdir()     # printing all the contents of the zip file
+    zip.extractall()   # extracting all the files -- not sure where they go
+    # zip.extract('python_files/python_wiki.txt')   # method to extract any file by specifying its path in the zip file.
+    # data = zip.read(name_of_file_to_read)   # read some specific file
+    zip.close()
 
-
+    # Handle a bad zipfile
+    file_name = r'C:\\github\\myzip\\bad_zip_file.zip'
+    try:
+        zip = ZipFile(file_name, 'r')
+    except BadZipFile:
+        print('zip file is bad')
 
 # ======================================================================================================================
 # zip.infolist()

@@ -171,7 +171,8 @@ try:
     num_tickets = int(num_tickets)
 except ValueError: # "except:" will catch all errors and NOT stop
     print("Entry invalid, please try again.") # if you entered a char instead.
-else:  # the try was successful. Better to reduce the content in 'try' and move it to here
+else:  # the try was successful. Better to reduce the content in 'try' and move it to here. You can even
+       # return a value here and the 'finally clause will still be executed afterwards
     print('this is printed only if success')
 finally:
     print('this will always get printed')

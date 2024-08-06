@@ -521,8 +521,11 @@ sorted(dirpath.iterdir(), key=os.path.getmtime)[-1]   # WindowsPath('myfiles/tou
 # tempfile from the standard library
 # ============================================================================================================
 import tempfile
-tempfile.gettempdir()  # returns the temp directory  'C:\\Users\\orenb\\AppData\\Local\\Temp'
-tempfile.gettempdirb() # returns the temp directory as byte string  b'C:\\Users\\orenb\\AppData\\Local\\Temp'
+tempfile.gettempdir()    # returns the temp directory  'C:\\Users\\orenb\\AppData\\Local\\Temp'
+tempfile.gettempdirb()   # returns the temp directory as byte string  b'C:\\Users\\orenb\\AppData\\Local\\Temp'
+
+tempfile.gettempprefix()   # returns The default prefix for temporary directories as string. i.e. tmp
+tempfile.gettempprefixb()
 
 file = tempfile.TemporaryFile(dir='./')          # creates a temporary file in cwd, obj returned is a bytestream file object with a wrapper
 file = tempfile.TemporaryFile()                  # creates a temporary file in the os temp directory

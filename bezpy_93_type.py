@@ -406,16 +406,25 @@ def another_fn(input: Type[str]):
 
 
 # ======================================================================================================================
-# Annotated: as of python 3.9  (don't fully understand the use case)
+# typing.Annotated: as of python 3.9
+# On its own Annotated does not do anything other than assigning extra information (metadata) to a reference.
+# It is up to another code, which can be a library, framework or your own code,
+# to interpret the metadata and make use of it. For example, FastAPI uses Annotated for data validation.
+# Sphinx can use them for documenting acceptable argument types and return value types of functions.
 # ======================================================================================================================
 from typing import Annotated
+
+# assign a to be the Annotation
 a = Annotated[str, "this is just metadata"]
 a.__metadata__  #  ('this is just metadata',)
-a # typing_extensions.Annotated[str, 'this is just metadata']
+a   # typing_extensions.Annotated[str, 'this is just metadata']
 
-def func3(q: Annotated[str, "this is a querystring"]):
+# assign b as an integer with an annotation
+b: Annotated[str, "this is just metadata"] = 5
+
+
+def func3(query: Annotated[str, "this is a querystring"]):
     pass
-
 
 
 

@@ -4,13 +4,12 @@ import pyspark   # requires pip install pypark==<version-to-match-Apache-Spark>
 import pandas as pd
 from pyspark.sql import SparkSession
 
-# 1) pyspark.sql.SparkSession vs. pyspark.SparkContext
-# 2) Resilient Distributed Dataset (RDD) API Vs. Spark DataFrames API  Vs. Spark DataSet API (not used in python)
+# 1) (a) pyspark.sql.SparkSession Vs.
+#    (b) pyspark.SparkContext
+# 2) (a) Resilient Distributed Dataset (RDD) API Vs.
+#    (b) Spark DataFrames API  Vs.
+#    (c) Spark DataSet API (not used in python pyspark)
 
-
-# rdd.collect()
-# rdd.getStorageLevel()  # returns object detailing storage policy
-# rdd.isEmpty()   # Returns true if and only if the RDD contains no elements at all
 
 from pyspark.ml.feature import Imputer  # In statistics, imputation is the process of replacing missing data with substituted values
 from pyspark.ml.feature import VectorAssembler  # combine multiple columns into a single vector column
@@ -40,6 +39,23 @@ ss = SparkSession.builder.getOrCreate()  # This is a sparksession object
 
 ss.version # '3.0.3'
 #  ss.master #  local[*]   ??? no such property
+
+
+
+
+# rdd.collect()
+# rdd.getStorageLevel()  # returns object detailing storage policy
+# rdd.isEmpty()   # Returns true if and only if the RDD contains no elements at all
+# rdd.saveAsPickleFile(path: str, batchSize: int = 10) → None   #  Save this RDD as a SequenceFile of serialized objects. The serializer used is
+
+sc = ss.sparkContext   # declare a Spark Context
+# sc.addPyFile(path: str) → None     # Add a .py or .zip dependency for all tasks to be executed on this SparkContext in the future. The path passed can be either a local file, a file in HDFS (or other Hadoop-supported filesystems), or an HTTP, HTTPS or FTP URI.
+# sc.listFiles()   # Returns a list of file paths that are added to resources.
+# sc.get(filename: str) → str   #  Get the absolute path of a file added through SparkContext.addFile() or SparkContext.addPyFile().
+# sc.addFile(path: str, recursive: bool = False) → None[source]  # Add a file to be downloaded with this Spark job on every node. The path passed can be either a local file, a file in HDFS (or other Hadoop-supported filesystems), or an HTTP, HTTPS or FTP URI.
+# sc.pickleFile(name: str, minPartitions: Optional[int] = None) → pyspark.rdd.RDD[Any]  #  Load an RDD previously saved using RDD.saveAsPickleFile() method.
+
+
 # Read from raw file
 sdf = ss.read.csv(file1) # this is a pyspark dataframe
 

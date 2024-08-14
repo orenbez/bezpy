@@ -12,8 +12,8 @@ os.getcwd()   # Return the current working directory  e.g. C:\bezpy\bezpy
 os.path.abspath(os.path.curdir) #alternative to getcwd()
 os.chdir('..') # Changes current working directory (cwd) to the above directory  e.g. C:\bezpy
 # os.chdir('../..') for two parent directories above
-program_path = os.path.dirname(__file__)  # directory of your python file e.g C:\bezpy\bezpy
-program_file = os.path.basename(__file__) # python file name which is being executed	
+program_path = os.path.dirname(__file__)    # directory of your python file e.g C:\bezpy\bezpy
+program_file = os.path.basename(__file__)   # python file name which is being executed
 
 src = os.path.join(program_path, 'myfiles')
 os.chdir(src) # Changes current working directory (cwd) to src
@@ -245,11 +245,13 @@ if os.path.exists(r'.\myfiles\Data Science Projects\Project 1'):
 # Create a single folder
 if not os.path.exists(r'.\myfiles\folder_name'):
     os.mkdir(r'.\myfiles\folder_name')
+    # for linux platforms you can add parameter e.g. mode=511
 
-# Creates a full path
+# Creates a full path including all sub-directories
 if not os.path.exists(r'.\myfiles\Data Science Projects\Project 1'):
     os.makedirs(r'.\myfiles\Data Science Projects\Project 1')  
     # can add parameter exist_ok=False to raise exception is target directory already exists
+    # for linux platforms you can add parameter e.g. mode=511
 
 
 # ======================================================================================================================
@@ -385,21 +387,23 @@ os.path.isdir(fullsourcepath)    # bool
 os.path.exists(fullsourcepath)   # This returns true if fullpath is either a file or a directory
 
 # join two or more paths with .join
-os.path.join(r'C:\temp\s1', r'home\sub', r'x\y') # 'C:\\temp\\s1\\home\\sub\\x\\y'
+os.path.join(r'C:\temp\s1', r'home\sub', r'x\y')   # 'C:\\temp\\s1\\home\\sub\\x\\y'
 
-# Get the extension of a file
-name, extension = os.path.splitext('filename.ext')
 
+os.path.splitext(r'C:\temp\s1\filename.ext')   #  ('C:\\temp\\s1\\filename', '.ext')
+os.path.split(r'C:\temp\s1\filename.ext')     #   ('C:\\temp\\s1', 'filename.ext')
 # ======================================================================================================================
 # shutil module:
 # https://www.geeksforgeeks.org/shutil-module-in-python/
 # https://docs.python.org/3/library/shutil.html
+# Note:  don't think there is a built-in os function that copies files, would have to do an open() command for 'r' & 'w'
 # ======================================================================================================================
 # import shutil (built-in module)
-
-# shutil.copyfileobj(fsrc, fdst[, length])            # Copy the contents of the file-like object fsrc to the file-like object fdst.
-# shutil.copy(src, dst, *, follow_symlinks=True)      # Copies the file src to the file or directory dst. src and dst should be path-like objects or strings   # don't think there is a built-in os function that copies, destination can be directory
+# paths can be path-like objects or strings
+# shutil.copyfile(src, dst, *, follow_symlinks=True)  # Copy data from src to dst in the most efficient way possible.
+# shutil.copy(src, dst, *, follow_symlinks=True)      # Copies the file src to the file or directory dst. src=path to single file,  dst can be a full file_path or directory, also copies file permissions
 # shutil.copy2(src, dst, *, follow_symlinks=True)     # Identical to copy() except that copy2() also attempts to preserve file metadata.
+# shutil.copyfileobj(fsrc, fdst[, length])            # Copy the contents of the file-like object fsrc to the file-like object fdst.
 # shutil.copymode(src, dst, *, follow_symlinks=True)  # Copy the permission bits from src to dst. The file contents, owner, and group are unaffected. src and dst are path-like objects or path names given as strings.
 # shutil.copystat(src, dst, *, follow_symlinks=True)  # Copy the permission bits, last access time, last modification time, and flags from src to dst. On Linux, copystat() also copies the “extended attributes” where possible.
 # shutil.ignore_patterns(*patterns)                   # This factory function creates a function that can be used as a callable for copytree()'s ignore argument, ignoring files and directories that match one of the glob-style patterns provided. See the example below.
@@ -422,8 +426,8 @@ name, extension = os.path.splitext('filename.ext')
 # │     Function     │Copies metadata│Copies permissions│Can use buffer│Dest dir OK│
 # ├──────────────────┼───────────────┼──────────────────┼──────────────┼───────────┤
 # │shutil.copy       │      No       │        Yes       │    No        │    Yes    │
-# │shutil.copyfile   │      No       │        No        │    No        │    No     │
 # │shutil.copy2      │      Yes      │        Yes       │    No        │    Yes    │
+# │shutil.copyfile   │      No       │        No        │    No        │    No     │
 # │shutil.copyfileobj│      No       │        No        │    Yes       │    No     │
 # └──────────────────┴───────────────┴──────────────────┴──────────────┴───────────┘
 
@@ -548,17 +552,17 @@ named_file.close()                             # Close file
 sp_file = tempfile.SpooledTemporaryFile(max_size=10)  # Creating a temporary file to spool data into it
 sp_file.close()
 
-# TemporaryDirectory(suffix=None, prefix=None, dir=None)      # create a temporary directory, must explicitly cleanup
+# TemporaryDirectory(suffix=None, prefix=None, dir=None)      # create a temporary directory object, must explicitly cleanup
 temp_dir = tempfile.TemporaryDirectory()      # create a temporary directory
 temp_dir.name         # e.g. 'C:\\Users\\orenb\\AppData\\Local\\Temp\\tmppg9b8_wx'
 temp_dir.cleanup()    # deletes directory and contents
 
-with tempfile.TemporaryDirectory() as tempdir:  # this will invoke 'cleanup' on exit of context
-     pass
+with tempfile.TemporaryDirectory() as temp_dir:  # this will invoke 'cleanup' on exit of context
+     assert isinstance(temp_dir, str)   # within context manager,  temp_dir is a string not an object
 
 # tempfile.mkdtemp(suffix=None, prefix=None, dir=None)      # create a temporary directory, but returns string, not directory object
 temp_dir = tempfile.mkdtemp()   # returns directory path as string
-os.rmdir(temp_dir)              # requires explicit removal
+os.rmdir(temp_dir)              # requires explicit removal - no cleanup method
 
 # ============================================================================================================
 # FILE SECURE TRANSFER - see bezpy_29_sftp.py

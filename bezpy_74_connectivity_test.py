@@ -8,7 +8,7 @@ from bezpy_11_send_email import send
 
 # ======================================================================================================================
 # C:\Users\ECUSA-008>tracert yahoo.com
-    # note `tracert yahoo.com` traces route to yahoo.com from your PC
+# note `tracert yahoo.com` traces route to yahoo.com from your PC
 # ======================================================================================================================
 # Tracing route to yahoo.com [74.6.231.21]
 # over a maximum of 30 hops:
@@ -40,8 +40,6 @@ east_coast = {0: ['LOCAL', LOCAL, 0, 0],
               4: ['OFFICE_IP', OFFICE_IP, 0, 0],
               5: ['GATEWAY_IP', GATEWAY_IP, 0, 0],
               6: ['WEBSITE', WEBSITE, 0, 0]}
-
-
 
 # ======================================================================================================================
 # C:\Users\orenb>tracert  yahoo.com
@@ -83,6 +81,7 @@ def set_log(filename):
                         level=logging.INFO,
                         format='%(asctime)s: %(levelname)s -> %(name)s -> %(message)s',
                         datefmt='%Y-%m-%d %H:%M:%S')
+
 
 if __name__ == '__main__':
 

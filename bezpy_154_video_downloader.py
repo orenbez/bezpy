@@ -93,8 +93,8 @@ def check_url(url):
 
 if __name__ == "__main__":
 
-    movie_name = 'Mediterraneo (1991)'
-    m3u8_url = 'https://vdnm.v4507fb3559.site/_v2-ewdl/9a701df349a7e4ae16c25b01dd7fefae231920c4561f9eea8c9f78fe4fcd06741ae3e719f0ef63837c6cf62e8daaecb28d7ff9aa0d734593957b6ac8d304036c2ba572c63dc0f2a87391fa2e8655928300de2bf9e0ec895b97205eb6ff80e3a32b369acd5daf0ea77774ddace3/h/beaaabae4/fbfedeee;9d705ee448b4e4e553dc06568f6feda3345b239e1c12c0.m3u8'
+    movie_name = 'Despicable Me 4 (2024)'
+    m3u8_url = 'https://9str-m3u8v1.playm4u.xyz/m3u8v2/1080/66b1874726b30eda78e5d330/6b1b421737f28aab0b921c9e82511997/8c2b304be54b532e03acbb321284cc5e/1723515193/708cc2e38d0a7ff409012231bde85cf3.m3u8'
 
 
     if check_url(m3u8_url):

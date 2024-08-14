@@ -133,3 +133,25 @@ a == b   #  True
 #     if both are defined       -> >>> str(x) and >>> print(x) uses __str__, >>> x and >>> repr(x) uses __repr__
 
 # note, you can add __repr__ = __str__  to bottom of class
+
+# ======================================================================================================================
+# New decorator '@override' for python 3.13
+# When the type checker sees that our method is being decorated with @override, it will treat it as a type error if we
+# change or remove the method from the parent class.
+# ======================================================================================================================
+# from typing import override
+#
+# class Car:
+#     def fill_gas(self, gas: str) -> bool: ...
+#
+# class DieselCar(Car):
+#     # override this method from parent class
+#     @override
+#     def fill_gas(self, gas: str) -> bool:
+#         print("I only run on diesel")
+#
+# class PetrolCar(Car):
+#     # override this method from parent class
+#     @override
+#     def fill_gas(self, gas: str) -> bool:
+#         print("I only run on petrol")

@@ -526,11 +526,9 @@ def outer_2():
     
 outer_2()
 
-
 # ======================================================================================================================
 # PASSING ARGUMENTS TO THE COMMAND LINE see bezpy_08_arparse.py for a more formal method
 # ======================================================================================================================
-
 # Example use from command line....
 # $python>: python main2.py foo bar "name='david jones'" age=23
 
@@ -626,6 +624,51 @@ os.environ.popitem()                              # ('ALLUSERSPROFILE', 'C:\\Pro
 # PYTHONVERBOSE=x:           Performs the same task as the -v option.
 # PYTHONWARNINGS=arg:        Performs the same task as the -W option. arg=ignore (to suppress warnings) or arg=default (to reinstate warnings)
 
+
+# ======================================================================================================================
+# https://docs.python.org/3/library/sysconfig.html
+# `python -m sysconfig`  this will display all the results
+# ======================================================================================================================
+import sysconfig   # from standard library
+sysconfig.get_config_vars()     # returns all environment variables as dictionary
+sysconfig.get_config_var('py_version')  # '3.10.0'  returns named environment variable
+sysconfig.get_platform()  # returns a string that identifies the current platform  'win-amd64'
+# sysconfig.expand_makefile_vars(s, vars)
+sysconfig.get_config_h_filename()   # 'C:\\Users\\orenb\\AppData\\Local\\Programs\\Python\\Python310\\Include\\pyconfig.h'
+sysconfig.get_makefile_filename()   # 'C:\\Users\\orenb\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\config\\Makefile'
+
+sysconfig.get_path_names()    # This function returns a tuple containing all path names currently supported in sysconfig.
+    # ('stdlib', 'platstdlib', 'purelib', 'platlib', 'include', 'scripts', 'data')
+    # stdlib	    directory containing the standard Python library files that are not platform-specific.
+    # platstdlib	directory containing the standard Python library files that are platform-specific.
+    # platlib	    directory for site-specific, platform-specific files.
+    # purelib	    directory for site-specific, non-platform-specific files.
+    # include	    directory for non-platform-specific header files.
+    # platinclude	directory for platform-specific header files.
+    # scripts	    directory for script files.
+    # data	        directory for data files.
+
+sysconfig.get_path('include')  # 'C:\\Users\\orenb\\AppData\\Local\\Programs\\Python\\Python310\\Include'
+
+
+# sysconfig.get_paths(scheme, vars, expand)
+# sysconfig.get_preferred_scheme(key)
+sysconfig.get_python_version()  # returns the MAJOR.MINOR Python version number as a string.
+
+sysconfig.get_default_scheme()  # 'nt'
+sysconfig.get_scheme_names()    # ('nt', 'nt_user', 'osx_framework_user', 'posix_home', 'posix_prefix', 'posix_user')
+# Python uses an installation scheme that differs depending on the platform and on the installation options. Following schemes are currently supported:
+# posix_prefix	scheme for Posix platforms like Linux or Mac OS X.
+# posix_home	scheme for Posix platforms used when a home option is used upon installation.
+# posix_user	scheme for Posix platforms used when a component is installed through Distutils and the user option is used.
+# nt	        scheme for NT platforms like Windows.
+# nt_user	    scheme for NT platforms, when the user option is used
+
+# sysconfig.is_python_build(check_home)
+# sysconfig.parse_config_h(fp, vars)
+# sysconfig.realpath(path, strict=false)
+
+
 # ======================================================================================================================
 # METHOD 1: dotenv
 # ======================================================================================================================
@@ -655,13 +698,10 @@ env = environ.Env()
 
 #  see https://django-environ.readthedocs.io/en/latest/
 
-
-
 #------------------------------------
 import warnings # used to issue warnings
 warnings.warn("this is oren's warning")
 #------------------------------------
-
 
 # ======================================================================================================================
 # pythonic way to restart a main script mid-code
@@ -674,8 +714,6 @@ warnings.warn("this is oren's warning")
 #            ...
 #	 break
 # ======================================================================================================================
-
-
 
 #=======================================================================================================================
 #   sys.intern() interning values can optimize comparison performance and save memory

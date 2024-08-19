@@ -354,8 +354,6 @@ A.foo.__class__          # <class 'function'>
 #     .go() method, it will be inherited from class Y,  not from class Z
 # also see __mro_entries__
 # ======================================================================================================================
-
-
 #        X
 #       /\
 #      /  \
@@ -363,7 +361,7 @@ A.foo.__class__          # <class 'function'>
 #     \   /
 #      \ /
 #       W
-
+# ======================================================================================================================
 
 class X:
      def bin(self):
@@ -399,7 +397,7 @@ w.bingo()
 # bin called in W
 # go called in Y
 
-print(W.__mro__)  # This prints the W-Class MRO
+W.mro() # same as W.__mro__  # This prints the W-Class MRO
 # (__main__.W, __main__.Y, __main__.Z, __main__.X, object)
 
 # ======================================================================================================================

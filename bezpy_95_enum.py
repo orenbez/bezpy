@@ -53,18 +53,18 @@ list(Mistake) # [<Mistake.ONE: 1>, <Mistake.TWO: 2>, <Mistake.THREE: 3>]
 
 # can use strings
 class Test(Enum):
-    ONE = 'ONE'
-    TWO = 'TWO'
-    THREE = 'THREE'
+    ONE = '1'
+    TWO = '2'
+    THREE = '3'
 
-list(Test) # [<Test.ONE: 'ONE'>, <Test.TWO: 'TWO'>, <Test.THREE: 'THREE'>]
+list(Test)  # [<Test.ONE: '1'>, <Test.TWO: '2'>, <Test.THREE: '3'>]
 
 # Initialize with 'ONE', 'TWO', or 'THREE'
-t = Test.ONE      # Preferred method
+t = Test.ONE      # Preferred method to return enum instance
 t = Test('ONE')   # Same as above
 t = Test['ONE']   # Same as above
 t.name   # 'ONE'
-t.value  # 'ONE'
+t.value  # '1'
 
 
 # Can only take int values

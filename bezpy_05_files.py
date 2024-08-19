@@ -495,6 +495,10 @@ fp.as_uri()   # returns 'file:///C:/Oren/06%20Computing/06%2025%20Python/myfiles
 # Forward slash operator joins paths
 fp = Path.home() / 'subdir' / 'newfile.txt' # WindowsPath('C:/.../subdir/newfile.txt')
 fp = Path.home().joinpath('subdir', 'newfile.txt') # same as above
+parent_dir = Path(__file__).parent    # parent of executing file  i.e.  /c/github
+fp = Path(parent_dir / '..' / 'subdir')   # up one more dir and down to subdir i.e.  /c/subdir
+
+
 Path(r'.\myfiles\touched.txt').touch()  # creates empty file
 
 dirpath = Path(r'.\myfiles')

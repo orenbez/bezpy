@@ -126,7 +126,8 @@ class TestCase5(unittest.TestCase):
 
 
 # ======================================================================================================================
-# Mock & Patch  
+# Mock & Patch
+# https://docs.python.org/3/library/unittest.mock.html
 # ======================================================================================================================
 # https://realpython.com/python-mock-library/
 # Would be many reasons a function or process is inconvenient to run in testing
@@ -166,7 +167,7 @@ class TestCase9(unittest.TestCase):
 
     # Note in the patch, lambda *args, **kwargs overrides any input values and returns 'SUCCESS'
     def test_mock_9_2(self):
-        from mylib.mymock import my_function, another_func
+        from mylib.mymock import my_function, another_func   # note another_func() calls my_function()
         with patch('mylib.mymock.my_function', lambda *args, **kwargs: 'SUCCESS') as mocked_function:
             self.assertEqual(mocked_function(), 'SUCCESS')
             self.assertEqual(my_function(), 7)              # <-------- this is not getting mocked
@@ -192,6 +193,7 @@ class TestCase10b(unittest.TestCase):
     from mylib.mymock import my_class
     self.assertEqual(my_class(), (2, 5))   # <---------- no mocking this time
 
+
 @patch('mylib.mymock.MyClass')
 class TestCase10c(unittest.TestCase):
     def test_mock_10c(self, MockClass):
@@ -209,6 +211,7 @@ class TestCase10d(unittest.TestCase):
 
 @patch('mylib.mymock.MyClass2')
 class TestCase10e(unittest.TestCase):
+    """test class example"""
     def test_mock_10e(self, MockClass2):
         obj = MockClass2.return_value   # obj is a mocked instance of MyClass2
         obj.get_data.return_value = 3
@@ -217,14 +220,17 @@ class TestCase10e(unittest.TestCase):
 
 
 def test_mock_10f( ):
+    """test function example"""
     with patch('mylib.mymock.MyClass2') as MockClass2:
         obj = MockClass2()
         obj.get_data.return_value = 3
         from mylib.mymock import foo
         assert foo(obj) == 3
 
+
 @patch('mylib.mymock.MyClass2')
 def test_mock_10ff(MockClass2):
+    """function decorator example"""
     obj = MockClass2()
     obj.get_data.return_value = 3
     from mylib.mymock import foo
@@ -232,22 +238,22 @@ def test_mock_10ff(MockClass2):
 
 
 def test_mock_10g():
-
     # The mocking happens in the module where target function or object is USED not where the function or class is DEFINED ...
-    # so with patch('mylib.mymock.MyClass3') as MockClass3: is WRONG
+    # so with patch('mylib.mymock.MyClass3') is WRONG,  patch('mylib.mymock.MyClass3') is CORRECT
     with patch('mylib.mymock2.MyClass3') as MockClass3:
         obj = MockClass3()
         obj.value = 3
         from mylib.mymock2 import my_class3
         assert my_class3() == 3
 
-
     with patch('mylib.mymock2.MyClass3.method', return_value=4) as MockClass3:
         from mylib.mymock2 import my_class3, test_2
-        assert my_class3() == 2  # <-- this is not being mocked
-        assert test_2() == 4    # <---- mocking a single class method
+        assert my_class3() == 2     # <-- this is not being mocked
+        assert test_2() == 4        # <---- mocking a single class method
+
 
 class TestCase10g(unittest.TestCase):
+    """mocking class Blog"""
     @patch('mylib.mymock.Blog')
     def test_mock_10g(self, MockBlog):
         import mylib
@@ -260,8 +266,8 @@ class TestCase10g(unittest.TestCase):
         assert MockBlog is mylib.mymock.Blog  # The mock is equivalent to the original
         assert MockBlog.called  # The mock was called
 
-        blog.posts.assert_called_with()       # We called the posts method with no arguments
-        blog.posts.assert_called_once_with()  # We called the posts method once with no arguments
+        blog.posts.assert_called_with()       # returns None, We called the posts method with no arguments
+        blog.posts.assert_called_once_with()  # returns None, We called the posts method once with no arguments
 
         blog.posts(1, 2, 3)
         print(blog.posts.call_args)   # returns call(1, 2, 3)
@@ -342,11 +348,26 @@ def some_method():
     except Exception as e:
         return e.args[0]  # this captures the exception message only
 
+
+def method_2():
+    from mylib.mymock import divide_me
+    return divide_me(0, 1)
+
+
 class TestCase12a(unittest.TestCase):
     @patch('mylib.mymock.divide_me', side_effect=ValueError('This was Bad'))
     def test_mock_12_1(self, mock_obj):
         ret = some_method()
         self.assertEqual(ret, 'This was Bad')
+
+    @patch('mylib.mymock.divide_me', side_effect=[1, 2, 3])
+    def test_mock_12_2(self, mock_obj):
+        ret1 = method_2()
+        ret2 = method_2()
+        ret3 = method_2()
+        self.assertEqual(ret1, 1)
+        self.assertEqual(ret2, 2)
+        self.assertEqual(ret3, 3)
 
 
 def mock_divide_me(a, b):
@@ -358,10 +379,81 @@ class TestCase12b(unittest.TestCase):
     def test_mock_divide_me(self, divide_me):
         self.assertEqual(divide_me(4, 2), 2)
 
+# ======================================================================================================================
+#  Mock() Object as a Library Substitute
+# ======================================================================================================================
+from datetime import datetime
+from unittest.mock import Mock
+thursday = datetime(year=2023, month=2, day=2)
+saturday = datetime(year=2023, month=2, day=4)
+datetime = Mock()
+def is_weekend():
+    today = datetime.today()
+    if today.weekday() == 5 or today.weekday() == 6:
+        return True
+    else:
+        return False
+datetime.today.return_value = saturday
+assert is_weekend()
+datetime.today.return_value = thursday
+assert not is_weekend()
+
+# ======================================================================================================================
+# Side_effect in Mock()
+# ======================================================================================================================
+# The following code demonstrates three different types of Side Effects.
+# 1. executing a function, 2. calling an Exception, 3. referencing an iterable
+# ======================================================================================================================
+from unittest.mock import Mock
 
 
-# ===========================================================================================
+def keypairs(arg):
+    return {'a': 'alphabet', 'n': 'number', 's': 'special character', 'c': 'capital letters'}[arg]
 
+
+def plusone(x):
+    return x + 1
+
+mock1 = Mock(side_effect=TypeError('something'))
+mock2 = Mock()
+mock3 = Mock()
+mock2.side_effect = keypairs
+mock3.side_effect = plusone
+
+# mock1()   # raises TypeError: something
+mock2('a')  # returns alphabet
+mock3(4)    # returns 5
+
+# ======================================================================================================================
+# Specifications in Mock()
+# ======================================================================================================================
+from unittest.mock import Mock
+
+
+class Student:
+    def __init__(self, name, rollno, subject, section, aggmarks):
+        self.name = name
+        self.rollno = rollno
+        self.subject = subject
+        self.section = section
+        self.aggmarks = aggmarks
+
+student1 = Student('Paan Singh Tomar', 72, 'CompSci', 'A', 9.67)
+mock = Mock(spec=student1)
+print(mock.name, mock.rollno)
+mock.age = 19   # set even thought not part of original object
+print(mock.age)
+
+# ======================================================================================================================
+# Using patch.dict
+# ======================================================================================================================
+foo = {'key': 'value'}
+original = foo.copy()
+
+def test_17():
+    with patch.dict(foo, {'newkey': 'newvalue'}, clear=True):    # < - -  clear=True is required here so that foo is restored to original value
+        assert foo == {'newkey': 'newvalue'}
+    assert foo == original
 
 if __name__ == '__main__':  # this is not required if you are running from command line with python -m unittest
     unittest.main()  # runs all test cases

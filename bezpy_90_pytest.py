@@ -1,7 +1,6 @@
 # READ_ME: https://realpython.com/pytest-python-testing/
 # READ_ME: https://levelup.gitconnected.com/a-comprehensive-guide-to-pytest-3676f05df5a0
 
-
 # Alternative to 'unittest' and 'nosetest'
 # Requires 'pip install pytest'
 # https://www.guru99.com/pytest-tutorial.html
@@ -48,8 +47,6 @@
 
 # install pytest-xdist to run tests over multiple cores in parallel
 
-
-
 # ======================================================================================================================
 # To Debug pytest in pycharm, stopping at breakpoints ...
 # ======================================================================================================================
@@ -63,19 +60,17 @@
 # Note that the green triangle and debugging option is only available for functions 
 # called  'test_xxx'  or   from the if __name__ == '__main__' line.
 
-
-
 import pytest  # needed only for decorators
 from platform import system
 # ======================================================================================================================
 # You can set up the tests with setup_module() & teardown_module()
-
 
 # must have this exact name to use as a setup fuction
 def setup_module():
     global input_4
     input_4 = 4
     print('\n----setup_module()-----')
+
 
 # must have this exact name to use as a teardown fuction.  This gets called after all of the tests
 def teardown_module():
@@ -106,8 +101,8 @@ def sample_data():
 def setup_dev_environment():
     pass
 
-
 # Note for scope='session' the fixture must be in conftest.py file
+
 
 # will run for all params
 @pytest.fixture(params=["chrome", "firefox"], scope="class")
@@ -170,8 +165,8 @@ def test_method_6():
     pass
 
 
-# This tests serveral parameter sets
-@pytest.mark.parametrize("x, y, z",[(5,5,10),(3,5,8)])
+# This tests several parameter sets
+@pytest.mark.parametrize("x, y, z",[(5, 5, 10),(3, 5, 8)])
 def test_method_7(x, y, z):
     assert x + y == z, "test 7.1 failed"
 
@@ -237,7 +232,22 @@ def test_xfail():
   if not user_name:
     pytest.xfail()
 
+from mylib.mymock import MyClass3
 
+# testing with pytest using a Test Class
+class TestMyPytestClass1:
+    x = 3   # < -- -- treated as any static variable
+    mc3 = MyClass3()
+
+    def test_one(self):
+        assert self.x == 3
+
+    def test_two(self):
+        assert self.mc3.value == 2
+        assert self.mc3.method() == 3
+
+
+# ======================================================================================================================
 # Execute with ... pytest bezpy_90_pytest.py                ...For entire module
 # Execute with ... pytest bezpy_90_pytest.py::test_fix1     ...For specific test
 

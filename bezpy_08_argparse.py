@@ -21,11 +21,11 @@ sys.argv = ['bezPy08_argparse.py', 'YYY', '45', '-s',  '-a3=VALUE', '-a5=7']    
 # using sys.argv is the easy way to retrieve the parameters
 
 
-def arg_parser() -> argparse.ArgumentParser:
+def arg_parser() -> argparse.Namespace:
 
-	parser = argparse.ArgumentParser(description='Simple Example')
+	parser = argparse.ArgumentParser(description='Simple Example')   # of type argparse.ArgumentParser
 
-	# Postitional Arguments (always required, can NOT set default value if not passed)
+	# Positional Arguments (always required, can NOT set default value if not passed)
 	parser.add_argument("first_arg", help="This is an 8-digit policy number")
 	parser.add_argument("second_arg", help="2nd arg must be integer", type=int)
 
@@ -75,15 +75,18 @@ print(f"args.fifth_arg = {args.fifth_arg}")     # OPTIONAL Fourth argument, stri
 # “version”
 # “extend”
 
-def arg_parser2() -> argparse.ArgumentParser:
+def arg_parser2() -> argparse.Namespace:
 	parser = argparse.ArgumentParser(description='Example 2')
-	parser.add_argument('--verbose', '-v', action='count', default=0)   			# args.verbose will return number of v's passed e.g. -vvv ->  args.verbose = 3
-	parser.add_argument('--coordinates', type=float, nargs=2,)          			# accepts exactly two values for flag
-	parser.add_argument('--soo', type=float, nargs='*',)          					# accepts one or more values for flag,  '*' as used in regex.
-	parser.add_argument('--foo', type=float, nargs='+',)          					# accepts at least one value for flag,  '+' as used in regex.
-	parser.add_argument('--boo', type=float, nargs='?', default='x', const='y') 	# accepts zero or one value for flag,   '?' as used in regex. If flag excluded default value used, if flag included without a value  then 'const' value used
+	parser.add_argument('--verbose', '-v', action='count', default=0)   				# args.verbose will return number of v's passed e.g. -vvv ->  args.verbose = 3
+	parser.add_argument('--coordinates', type=float, nargs=2,)          				# accepts exactly two values for flag
+	parser.add_argument('--soo', type=float, nargs='*',)          						# accepts one or more values for flag,  '*' as used in regex.
+	parser.add_argument('--foo', type=float, nargs='+',)          						# accepts at least one value for flag,  '+' as used in regex.
+	parser.add_argument('--boo', type=float, nargs='?', default=1.3, const=3.7)      	# accepts zero or one value for flag,   '?' as used in regex. If flag excluded default value used, if flag included without a value then 'const' value used
+	parser.add_argument('--trading-pair', type=str, default='BTC-ETH', choices=['BTC-ETH', 'BTC-USD', 'ETH-USD', 'ADA-USD'])  # only choices accepted
 
-	# only choices accepted
-	parser.add_argument('--trading-pair', type=str, default='BTC-ETH', choices=['BTC-ETH', 'BTC-USD', 'ETH-USD', 'ADA-USD'])
+	return parser.parse_args()
 
+
+sys.argv = ['bezPy08_argparse.py', '-vvv', '--coordinates', '1.2', '2.3', '--soo=5.6', '--foo=3.4', '--boo']
 args2 = arg_parser2()
+print(args2)   # Namespace(verbose=3, coordinates=[1.2, 2.3], soo=[5.6], foo=[3.4], boo=3.7, trading_pair='BTC-ETH')

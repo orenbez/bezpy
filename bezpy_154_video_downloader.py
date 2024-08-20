@@ -93,8 +93,8 @@ def check_url(url):
 
 if __name__ == "__main__":
 
-    movie_name = 'Despicable Me 4 (2024)'
-    m3u8_url = 'https://9str-m3u8v1.playm4u.xyz/m3u8v2/1080/66b1874726b30eda78e5d330/6b1b421737f28aab0b921c9e82511997/8c2b304be54b532e03acbb321284cc5e/1723515193/708cc2e38d0a7ff409012231bde85cf3.m3u8'
+    movie_name = 'The Mattachine Family (2023)'
+    m3u8_url = 'https://9str-m3u8v1.playm4u.xyz/m3u8v2/1080/66c3689826b30eda78e78ee6/6b1b421737f28aab0b921c9e82511997/8c2b304be54b532e03acbb321284cc5e/1724141867/aeb9177bb5c570dcdb5830bd6442cdcd.m3u8'
 
 
     if check_url(m3u8_url):

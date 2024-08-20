@@ -250,7 +250,7 @@ if not os.path.exists(r'.\myfiles\folder_name'):
 # Creates a full path including all sub-directories
 if not os.path.exists(r'.\myfiles\Data Science Projects\Project 1'):
     os.makedirs(r'.\myfiles\Data Science Projects\Project 1')  
-    # can add parameter exist_ok=False to raise exception is target directory already exists
+    # can add parameter exist_ok=False to raise exception if target directory already exists
     # for linux platforms you can add parameter e.g. mode=511
 
 

@@ -1,2 +1,20 @@
-2024-07-23 16:39:03|MainThread|INFO|root|1|Name: Zara, Age: 21, Weight: 33.30 kg
-2024-07-23 16:39:15|MainThread|INFO|root|1|Name: Zara, Age: 21, Weight: 33.30 kg
+2024-09-09 16:15:12|MainThread|INFO|root|77|Info message
+2024-09-09 16:15:12|MainThread|WARNING|root|78|Warning message
+2024-09-09 16:15:12|MainThread|ERROR|root|79|Error message
+2024-09-09 16:15:12|MainThread|CRITICAL|root|80|Critical message
+2024-09-09 16:15:12|MainThread|INFO|root|89|Name: Zara, Age: 21, Weight: 33.30 kg
+2024-09-09 16:15:12|MainThread|INFO|root|90|Name: Zara, Age: 21, Weight: 33.30 kg
+2024-09-09 16:15:12|MainThread|ERROR|root|100|Exception occurred
+Traceback (most recent call last):
+  File "C:\github\bezpy_28_logging.py", line 98, in <module>
+    c = 3 / 0
+        ~~^~~
+ZeroDivisionError: division by zero
+2024-09-09 16:15:12|MainThread|INFO|root|8|Hello from mylog.py
+2024-09-09 16:15:12|MainThread|DEBUG|root|121|Debug message
+2024-09-09 16:15:12|MainThread|DEBUG|root|122|Debug message
+2024-09-09 16:15:12|MainThread|INFO|another|152|new log in the new format
+2024-09-09 16:15:12|MainThread|WARNING|another|153|new log in the new format
+2024-09-09 16:15:12|MainThread|WARNING|root|175|this is from l0
+2024-09-09 16:15:12|MainThread|WARNING|xxx|176|this is from l1
+2024-09-09 16:15:12|MainThread|WARNING|xxx.yyy|177|this is from l2

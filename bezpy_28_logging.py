@@ -2,7 +2,7 @@
 # https://docs.python.org/3/library/logging.html
 
 # ======================================================================================================================
-# 5 severity levels:    (note you can add more if you want)
+# 5 severity levels:    (note you can add more levels if you want)
 # ======================================================================================================================
 # logging.DEBUG = 10
 # logging.INFO = 20
@@ -42,31 +42,27 @@ file2 = r'.\myfiles\test2.log'
 file3 = r'.\myfiles\test3.log'
 file4 = r'.\myfiles\file.conf'
 file5 = r'.\myfiles\test5.log'
+
 # ======================================================================================================================
 # by default logging is set to ...
 # logging.basicConfig(stream=sys.stderr, level=logging.WARNING)
+# logging.debug('Debug message')         # This would be ignored as level is set to logging.WARNING
+# logging.info('Info message')           # This would be ignored as level is set to logging.WARNING
+# logging.warning('Warning message')     # WARNING:root:Warning message - Displayed in Red with format <Logging-level>:<logger-name>:<message>
+# logging.error('Error message')         # ERROR:root:Error message - Displayed in Red with format <Logging-level>:<logger-name>:<message>
+# logging.critical('Critical message')   # CRITICAL:root:Critical message - Displayed in Red with format <Logging-level>:<logger-name>:<message>
 
-# logging.debug('Debug message')        # This would be ignored as level is set to loggin.WARNING
-# logging.info('Info message')          # This would be ignored as level is set to loggin.WARNING
-# logging.warning('Warning message')
-# logging.error('Error message')
-# logging.critical('Critical message')
-
-# displays in red with format <Logging-level>:<logger-name>:<message>
-# WARNING:root:Warning message
-# ERROR:root:Error message
-# CRITICAL:root:Critical message
 # ======================================================================================================================
-
 # To set up the root logger and create log file ...
-# Swap (asctime)s for  %(asctime)s.%(msecs)03d   for micro seconds with datefmt UNCHANGED
-# Note. logging.basicConfig:  CAN ONLY BE EXECUTED ONCE, and MUST be before the first logging.<level>.('message')
-#      else will default to logging.basicConfig(stream=sys.stderr, level=logging.WARNING)
+#
 logging.basicConfig(filename=file1,      # this field redirects from console (stream=sys.stdout)  to log file
                     filemode='w',        # or 'a' = append
                     level=logging.INFO,  # Sets logging for INFO and above (i.e. logging.debug is ignored)
                     format='%(asctime)s|%(threadName)s|%(levelname)s|%(name)s|%(lineno)d|%(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
+# • logging.basicConfig:  CAN ONLY BE EXECUTED ONCE, and MUST be before the first logging.<level>.('message')
+#      else will default to logging.basicConfig(stream=sys.stderr, level=logging.WARNING)
+# • Swap (asctime)s for  %(asctime)s.%(msecs)03d   for micro seconds with datefmt UNCHANGED
 
 # Full list of 'format' attributes: https://docs.python.org/3.8/library/logging.html#logrecord-attributes
 # logging.basicConfig(stream=sys.stdout)  # will set logging for stdout instead of file. NOTE: can not have both file output and stdout initialized with basicConfig, will give ValueError
@@ -97,45 +93,45 @@ logging.info("Name: %s, Age: %d, Weight: %.2f kg", 'Zara', 21, 33.3)
 # 2024-07-23 16:39:03|MainThread|INFO|root|1|Name: Zara, Age: 21, Weight: 33.30 kg
 # 2024-07-23 16:39:15|MainThread|INFO|root|1|Name: Zara, Age: 21, Weight: 33.30 kg
 
-
-# Capturing Stack Traces with exc_info
+# Capturing Stack Traces with exc_info and print to your logger
 try:
-  c = 3 / 0
+    c = 3 / 0
 except Exception as e:
-  logging.error("Exception occurred", exc_info=True)
+    logging.error("Exception occurred", exc_info=True)
   # logging.exception("Exception occurred")  # Equivalent to the above line
 
+# 2024-09-09 14:03:54|MainThread|ERROR|root|100|Exception occurred
 # Traceback (most recent call last):
 #   File "C:/Oren/06 Computing/06 25 Python/bezpy_28_logging.py", line 51, in <module>
 #     c = 3 / 0
 # ZeroDivisionError: division by zero
 
 # NOTE:  if a module is imported you do not need to do another logging.basicConfig() in that module too.
-test()  # This is an external function (from mylib.mylog)  call but still logs to file1
+test()  # This is an external function (from mylib.mylog) call but still logs to file1
 
 # Use this to modify the ROOT logger at runtime
 logger = logging.getLogger()     # access the 'root' logger
 logger.name                      # returns 'root'
-handler = logger.handlers[0]     # Returns root handler
-handler.flush()                  # Doesn't seem to be necessary
-handler.baseFilename             # returns root logger file path: 'C:\\bezpy\\bezpy\\myfiles\\test1.log'
+handler = logger.handlers[0]     # Returns 1st root handler object: <FileHandler C:\github\myfiles\test1.log (NOTSET)>
+handler.flush()                  # Flushes the stream.  (Doesn't seem to be necessary)
+handler.baseFilename             # returns root logger file path: 'C:\\github\\myfiles\\test1.log'
 logger.getEffectiveLevel()       # Returns 20 = logging.INFO level
 
-logger.setLevel(logging.DEBUG)  # This modifies logging level for root logger dynamically
+logger.setLevel(logging.DEBUG)  # This modifies logging level for root logger dynamically to 10 - All child loggers will also be set to 10 if they exist
 logging.debug('Debug message')  # This log will now appear, logging & logger point to the 'root' logger
 logger.debug('Debug message')   # This is the SAME as the above line
 
-# ADD stderr for 'root' logger in addition to the file output logger (could not be done with basicConfig )
+# ADD stderr for 'root' logger in addition to the file output logger (could not be done with basicConfig)
 stream_handler = logging.StreamHandler()   # Defaults to logging.StreamHandler(sys.stderr)
 logger.addHandler(stream_handler)          # Adds logs to stderr.  
-logger.handlers   # root logger now has two handlers [<FileHandler C:\bezpy\bezpy\myfiles\test1.log (NOTSET)>, <StreamHandler <stderr> (NOTSET)>]
+logger.handlers   # root logger now has two handlers: [<FileHandler C:\github\myfiles\test1.log (NOTSET)>, <StreamHandler <stderr> (NOTSET)>]
 
-logger2 = logging.getLogger("another")  # creates new logger called 'another', or retrieves logger 'another' if it exists
-logger2.name  # returns 'another'
-logger.getEffectiveLevel()    # returns 10,  level has been set as the parent (root) logger
+logger2 = logging.getLogger("another")   # creates new logger called 'another', or retrieves logger 'another' if it exists
+logger2.name                             # returns 'another'
+logger2.getEffectiveLevel()              # returns 10,  level has been set as the parent (root) logger
 
-assert logger.getChild('another') == logger2   # True, since 'another' is the child of the root logger
-assert logger2.parent == logger                # True, since parent of 'another' is the root logger
+assert logger.getChild('another') is logger2   # True, since 'another' is the child of the root logger.  It would also find a grandchild logger if it had that name
+assert logger2.parent is logger                # True, since parent of 'another' is the root logger
 
 # Add stdout & Change log format for root logger2
 log_format = logging.Formatter("[%(asctime)s] [%(threadName)-12s] [%(levelname)-5.5s] [%(name)s] [%(funcName)s] [%(lineno)10.5d]  [%(message)20.15s]")
@@ -145,16 +141,19 @@ file_handler = logging.FileHandler(file2)
 file_handler.setLevel(logging.WARNING)   # sets this only for file handler, not for all of logger 2
 logger2.addHandler(stream_handler)       # Adds stream handler to logger2
 logger2.addHandler(file_handler)         # Adds file handler to logger2
+logger2.handlers                         # logger2 now has two handlers: [<StreamHandler <stdout> (NOTSET)>, <FileHandler C:\github\myfiles\test2.log (WARNING)>]
 
 # Add log file & Change log format for logger2
 log_format = logging.Formatter("%(asctime)s: %(message)s", "%Y-%m-%d %H:%M:%S")   # sets date format also,  default date format = '2010-07-10 10:46:28,811' with micro secs
 file_handler = logging.FileHandler(file3)
 file_handler.setFormatter(log_format)
-logger2.addHandler(file_handler)     # additional file handler added to logger2
-logger2.info('new log in the new format')  # this now posts to all handlers of logger2 except the File Handler 'file2'
+logger2.addHandler(file_handler)              # additional file handler added to logger2
+logger2.handlers                              # now has 3 handlers: [<StreamHandler <stdout> (NOTSET)>, <FileHandler C:\github\myfiles\test2.log (WARNING)>, <FileHandler C:\github\myfiles\test3.log (NOTSET)>]
+logger2.info('new log in the new format')     # this now posts to all handlers of logger2 except the File Handler 'file2'
 logger2.warning('new log in the new format')  # posts to all handlers of logger2
+
 # ====================================================================================================================
-# standard syntax to retreive from multiple files set to the module name, e.g. logger = logging.getLogger(__name__)
+# standard syntax to retrieve from multiple files set to the module name, e.g. logger = logging.getLogger(__name__)
 # see explanation below
 # ====================================================================================================================
 l0 = logging.getLogger()            # sets l0 as the existing root logger  (defined above)
@@ -165,27 +164,27 @@ l0  # <RootLogger root (DEBUG)>
 l1  # <Logger xxx (DEBUG)>
 l2  # <Logger xxx.yyy (DEBUG)>
 
-assert l0 == l1.parent                 #  True
-assert l1 == l2.parent                 #  True
-assert l1 == l0.getChild('xxx')        # True
-assert l2 == l0.getChild('xxx.yyy')    # True
-assert l2 == l1.getChild('yyy')        # True
+assert l0 is l1.parent                 # True
+assert l1 is l2.parent                 # True
+assert l1 is l0.getChild('xxx')        # True
+assert l2 is l0.getChild('xxx.yyy')    # True
+assert l2 is l1.getChild('yyy')        # True
 
 l1.addHandler(logging.FileHandler(file5))
-l1.handlers                     # [<FileHandler C:\T1\x.log (NOTSET)>]
-l0.warning('this is from l0')   # writes to all root log streams
+l0.warning('this is from l0')   # writes to all root log streams (l0 only)
 l1.warning('this is from l1')   # writes to l0/l1 streams
 l2.warning('this is from l2')   # writes to l0/l1/l2 streams
 
-l0.addHandler(logging.StreamHandler(sys.stdout))  # reset root handler to stdout
-l0.warning('test')            # prints to stdout instead of stderr
+l0.addHandler(logging.StreamHandler(sys.stdout))  # adds stdtout to root stream handler in addition to stderr
+l0.handlers   # [<FileHandler C:\github\myfiles\test1.log (NOTSET)>, <StreamHandler <stderr> (NOTSET)>, <StreamHandler <stdout> (NOTSET)>]
+l1.handlers   # [<FileHandler C:\github\myfiles\test5.log (NOTSET)>]
+l2.handlers   # []  - no handlers added
+
+l0.warning('test')            # prints to stdout and stderr
 logging.warning('test')       # same as above
 logger = logging.getLogger(__name__)   # since __name__ will be == 'dir1.dir2.filename' you can inherit all handlers from 'dir1' with this trick
 
-
-# ==================================
-# Note: there is no close function #
-# ==================================
+# Note: there is no close function logger.close()
 
 
 # ======================================================================================================================
@@ -203,7 +202,7 @@ logger = logging.getLogger(__name__)   # since __name__ will be == 'dir1.dir2.fi
 # filter
 # filters
 # findCaller
-# getChild('child-name') - returns child logger
+# getChild('child-name') - returns child logger of the name 'child-name' (or grandchild)
 # getEffectiveLevel() - returns logger level
 # handle
 # handlers
@@ -281,11 +280,9 @@ LOGGING_CONFIG = {
 import logging.config
 
 logging.config.fileConfig(file4)            # loggers set by file.conf
-
 logging.config.dictConfig(LOGGING_CONFIG)   # loggers reset by LOGGING_CONFIG dictionary
 assert logging.getLogger('__main__').getEffectiveLevel() == logging.DEBUG  # 10
 assert logging.getLogger('my.packg').getEffectiveLevel() == logging.INFO   # 20
-
 
 # ======================================================================================================================
 # Sample User-Defined logging class

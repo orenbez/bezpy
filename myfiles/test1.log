@@ -18,3 +18,8 @@ ZeroDivisionError: division by zero
 2024-09-09 16:15:12|MainThread|WARNING|root|175|this is from l0
 2024-09-09 16:15:12|MainThread|WARNING|xxx|176|this is from l1
 2024-09-09 16:15:12|MainThread|WARNING|xxx.yyy|177|this is from l2
+2024-09-09 16:18:10|MainThread|WARNING|root|1|test
+2024-09-09 16:18:11|MainThread|WARNING|root|1|test
+2024-09-09 16:18:21|MainThread|WARNING|root|1|test
+2024-09-09 16:18:24|MainThread|WARNING|root|1|test
+2024-09-09 16:18:28|MainThread|WARNING|root|1|test

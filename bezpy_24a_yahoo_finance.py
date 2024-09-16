@@ -1,3 +1,4 @@
+# https://pypi.org/project/yfinance
 # Try this https://towardsdatascience.com/python-stock-analysis-balance-sheet-trend-analysis-18e6eb63cdc
 # Try this https://towardsdatascience.com/how-to-get-market-data-from-the-nyse-in-less-than-3-lines-python-41791212709c
 # Try this https://towardsdatascience.com/how-we-have-beaten-the-crypto-market-using-machine-learning-a45e8a7dbdcd?source=search_post---------1

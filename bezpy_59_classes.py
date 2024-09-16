@@ -146,18 +146,19 @@ print(l1 is l2 is Language._singleton)
 # ======================================================================================================================
 
 # Original implementation before dataclasses. These 3 methods are now auto-generated
-# class Card1:
-#
-#     def __init__(self, rank: str, suit: str):
-#         self.rank = rank
-#         self.suit = suit
-#
-#     def __repr__(self):
-#         return f'Rank = {self.rank}, Suit = {self.suit}'
-#
-#     def __eq__(self, card):
-#         return self.rank == card.rank and self.suit == card.suit
+class Card1:
 
+    def __init__(self, rank: str, suit: str):
+        self.rank = rank
+        self.suit = suit
+
+    def __repr__(self):
+        return f'Card(rank={self.rank}, suit={self.suit})'
+
+    def __eq__(self, card):
+        return self.rank == card.rank and self.suit == card.suit
+
+c1 = Card1(rank='Q', suit='♠')
 
 from dataclasses import dataclass
 
@@ -203,7 +204,7 @@ class Person:
 
 p = Person.generate_fred()  # returns Person(name='Fred', age=15)     
 # ===================================================================
-
+# ELON REACHED HERE
 from dataclasses import dataclass, field
 # Note the default_factory must be a 0-argument function called to initialize a field's value
 from random import choice

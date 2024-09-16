@@ -125,8 +125,8 @@ dt.fromisoformat(y) # datetime.datetime(2022, 12, 31, 0, 0)
 # to datetime which is in the standard library. dateutil is extension to datetime. 
 # It is an external package requires `pip install python-dateutil`
 #=======================================================================================================================
-d2 = dt(1990, 10, 10, 23, 15, 55, 999999)  #Oct 10 1990  11:15:55 pm  999,999 MicroSeconds
-d1 = dt(1989, 8,   7, 19, 10, 49, 999998)  #Aug 07 1989  07:10:49 pm  999,998 MicroSeconds
+d2 = dt(1990, 10, 10, 23, 15, 55, 999999)   # Oct 10 1990  11:15:55 pm  999,999 MicroSeconds
+d1 = dt(1989, 8,   7, 19, 10, 49, 999998)   # Aug 07 1989  07:10:49 pm  999,998 MicroSeconds
 
 diff = rd(d2, d1) # measures time difference between d2 & d1
 y = diff.years   # The full number of years difference
@@ -241,9 +241,6 @@ dt(2024, 3, 18, 2, 39, 56, tzinfo='America/New_York')
 london = timezone('Europe/London')
 # also see new built-in module 'ZoneInfo' as of python 3.9
 
-
-
-
 import holidays  # community library, pip install holidays
 holidays.USA(years=2021) # Returns object of holidays
 dt(2021,12,25) in holidays.USA()  # Returns True
@@ -281,6 +278,13 @@ print(timeit.timeit(costly_func, number = 10000))
 # Measure it using raw statements
 print(timeit.timeit("""map(lambda x: x**2, range(100))""", number = 10000))
 
+
+# ======================================================================================================================
+# UNIX TIME / EPOCH TIME
+# ======================================================================================================================
+# Unix time is a date and time representation widely used in computing. It measures time by the number of non-leap
+# seconds that have elapsed since 00:00:00 UTC on 1 January 1970, the Unix epoch
+# Every day in Unix time consists of exactly 86,400 seconds
 
 
 #=======================================================================================================================

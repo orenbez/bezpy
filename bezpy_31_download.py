@@ -18,7 +18,7 @@ from urllib import parse
 
 url = 'https://www.wikipedia.org/'
 res = urlopen(url)
-res.code   # the response code
+res.code   # 200, the response code
 res.length # byte length of the response
 res.peek() # displays first section of response
 data = res.read()  # can read the full response as bytes only once, after which the connection is closed

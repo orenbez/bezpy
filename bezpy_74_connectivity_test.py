@@ -1,8 +1,8 @@
+from datetime import datetime as dt
 import os
-import sys
 import logging
 from time import sleep
-from datetime import datetime as dt
+import sys
 from bezpy_11_send_email import send
 
 

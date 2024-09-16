@@ -115,11 +115,17 @@ requests.get('https://github.com/', timeout=0.1)  # set timeout for no response
 r = requests.get('https://httpbin.org/get', params={'key': 'value'})     # get(url, params=None, **kwargs))
 r = requests.post('https://httpbin.org/post', data={'key': 'value'})     # post(url, data=None, json=None, **kwargs)
 r = requests.put('https://httpbin.org/put', data={'key': 'value'})       # put(url, data=None, **kwargs)
-r = requests.delete('https://httpbin.org/delete')                       # delete(url, **kwargs)
-r = requests.head('https://httpbin.org/get')                            # head(url, **kwargs)
-r = requests.options('https://httpbin.org/get')                         # options(url, **kwargs)
-# requests.patch(url, data, args)	  # Sends a PATCH request to the specified url
+r = requests.delete('https://httpbin.org/delete')                        # delete(url, **kwargs)
+r = requests.head('https://httpbin.org/get')                             # head(url, **kwargs)
+r = requests.options('https://httpbin.org/get')                          # options(url, **kwargs)
+r = requests.patch('https://httpbin.org/patch')	                         # patch(url, data=None, **kwargs), Sends a PATCH request to the specified url
 # requests.request(method, url, args)  # Construct a generic request or any of the above types
+
+
+def get_external_ip():
+    """returns external ip-address"""
+    return  requests.get('https://api.ipify.org').content.decode('utf8')
+
 
 # ======================================================================================================================
 # API Example Starts Here

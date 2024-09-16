@@ -1,3 +1,4 @@
+# https://pypi.org/project/yfinance
 # https://medium.com/the-handbook-of-coding-in-finance/building-financial-data-storage-with-postgresql-in-python-b981e38826fe
 # also see bezpy_85_investpy
 import psycopg2

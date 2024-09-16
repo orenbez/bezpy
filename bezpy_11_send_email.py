@@ -40,11 +40,11 @@ from email import encoders
 from email.utils import formataddr
 from time import sleep
 
-# FROMADDR = "oren.bezalely@gmail.com"
-# USER = "oren.bezalely@gmail.com"
-# PSSWD = "rbdtkcwyqppxadiu"
-# SMTP = 'smtp.gmail.com'
-# PORT = 587
+FROMADDR = "Oren Bez"
+USER = "oren.bezalely@gmail.com"
+PSSWD = "opwp jcqo nbdd zzvc"    # < -- created new app password 'bezpy_email' on  9/9/2024 here: https://myaccount.google.com/apppasswords
+SMTP = 'smtp.gmail.com'
+PORT = 587
 
 
 # FROMADDR = "oren@bezalely.net"
@@ -60,12 +60,12 @@ from time import sleep
 # SMTP = 'smtp.office365.com'
 # PORT = 587
 
-
-FROMADDR = "oren@bezalely.net"
-USER = "oren.bezalely@gmail.com"
-PSSWD = "8JxcA5b2Q6XwMDBO"
-SMTP = 'smtp-relay.brevo.com'
-PORT = 587
+# Do not use - this was hacked: cancelled the password here: https://myaccount.google.com/apppasswords
+# FROMADDR = "oren@bezalely.net"
+# USER = "oren.bezalely@gmail.com"
+# PSSWD = "8JxcA5b2Q6XwMDBO"
+# SMTP = 'smtp-relay.brevo.com'
+# PORT = 587
 
 
 # ======================================================================================================================
@@ -171,8 +171,8 @@ def send(toaddr_list, subject, bodytext='', *fl):
         body += '</span><br>'
 
 
-    body += "<br><img src='https://bezalely.net/images/logo.gif' alt='Stillwater' width='180'><br><br>"
-    #body += "<br><img src='https://bezalely.net/images/sw_logo.jpg' alt='Stillwater' width='200'><br><br>"
+    body += "<br><img src='https://bezalely.net/images/Suzuki5.jpg' alt='suzuki' width='180'><br><br>"
+
 
     msg.attach(MIMEText(body, 'html'))   #USE FOR HTML EMAILS
     #msg.attach(MIMEText(body, 'text'))  #USE FOR TEXT EMAILS

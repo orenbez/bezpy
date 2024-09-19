@@ -139,7 +139,7 @@ f.close() # need explicit close since no 'with' command was used
 
 
 # ======================================================================================================================
-# FILE METHODS https://www.w3schools.com/python/python_ref_file.asp
+# FILE METHODS https://www.w3schools.com/python/python_ref_file.asp. Note there is also a readchar library (non-standard)
 # ======================================================================================================================
 # f.write(string)        # writes string to file  (note can also use the 'print' function to write to file
 # f.writelines(list)     # writes list of lines to file
@@ -148,7 +148,7 @@ f.close() # need explicit close since no 'with' command was used
 # f.readlines([n])       # reads list of next 'n' lines
 # f.readline()           # reads the next line, and returns the line,   returns '' when reaches eof
 # f.flush()              # flushes any cache stored with f.write() to the file, otherwise waits for f.close() before flushing
-# f.close()	         # close file-stream
+# f.close()	             # close file-stream
 # f.closed               # returns boolean  True => file is closed
 # f.readable()           # returns boolean  True => file is in read mode
 # f.writable()           # returns boolean  True => file is write mode
@@ -172,9 +172,6 @@ f.close() # need explicit close since no 'with' command was used
 # f.fileno()             # Returns underlying file descriptor if one exists. ???  OSError is raised if the IO object does not use a file descriptor
 # f.detach()             # Separate the underlying buffer from the TextIOBase and return it.
                          # After the underlying buffer has been detached, the TextIO is in an  unusable state.
-
-
-
 
 
 # example for editing a file by replacing text ...

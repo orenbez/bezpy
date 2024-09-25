@@ -19,7 +19,8 @@ USERID = 67105256295
 def use_instaloader():
     from instaloader import Instaloader, Profile
 
-    profile_name = 'f45_training_greatneckplaza'   # id = 9475274603
+    profile_name = 'northvalleygrp'
+    # profile_name = 'f45_training_greatneckplaza'   # id = 9475274603
     # profile_name = 'confidanze_fitness'  # id=1765910273
     # profile_name = 'tamarbezalely'   # id=3450447760  == p.username
     # profile_name = 'sv650y'
@@ -37,11 +38,9 @@ def use_instaloader():
     p = Profile.from_username(ig.context, profile_name)  # profile object
     p_id = p.userid
 
-    stories = list(ig.get_stories(userids=[p_id]))   # current stories
-    for story in stories:
-        print(story.video_url)
-
-
+    # stories = list(ig.get_stories(userids=[p_id]))   # current stories, login required
+    # for story in stories:
+    #     print(story.video_url)
 
 
     # igtv_iter = p.get_igtv_posts()  # iterator of igtv posts
@@ -53,11 +52,11 @@ def use_instaloader():
     # print('posts', list(p.get_posts()))  # takes a long time is there are a lot of posts
 
     post_iter = p.get_posts()  # returns iterator of all posts
-    post = next(post_iter)  # most recent post
-    post.shortcode    # DADpS7Kqe7y  c.f. with https://www.instagram.com/p/DADpS7Kqe7y/
-    post.video_url    # https://scontent.cdninstagram.com/o1/v/t16/f1/m86/F146DEBB7B60FE5DD6441DD9F91EB18F_video_dashinit.mp4?efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5JTlNUQUdSQU0uQ0xJUFMuQzMuNzIwLmRhc2hfYmFzZWxpbmVfMV92MSJ9&_nc_ht=scontent.cdninstagram.com&_nc_cat=110&vs=2c15a6234d15886b&_nc_vs=HBksFQIYUmlnX3hwdl9yZWVsc19wZXJtYW5lbnRfc3JfcHJvZC9GMTQ2REVCQjdCNjBGRTVERDY0NDFERDlGOTFFQjE4Rl92aWRlb19kYXNoaW5pdC5tcDQVAALIAQAVAhg6cGFzc3Rocm91Z2hfZXZlcnN0b3JlL0dBZ3ZjUnRYSERsckh0RUJBTG1fNnlCaHVScEJicV9FQUFBRhUCAsgBACgAGAAbAogHdXNlX29pbAExEnByb2dyZXNzaXZlX3JlY2lwZQExFQAAJtLNr-uu6vcFFQIoAkMzLBdAMbMzMzMzMxgSZGFzaF9iYXNlbGluZV8xX3YxEQB1_gcA&ccb=9-4&oh=00_AYApxcGje2k_v_pwNhmsgqpn3W8CyWuMRH00idur2qbnfA&oe=66ECFE78&_nc_sid=1d576d
+    # post = next(post_iter)  # most recent post
+    # post.shortcode    # DADpS7Kqe7y  c.f. with https://www.instagram.com/p/DADpS7Kqe7y/
+    # post.video_url    # https://scontent.cdninstagram.com/o1/v/t16/f1/m86/F146DEBB7B60FE5DD6441DD9F91EB18F_video_dashinit.mp4?efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5JTlNUQUdSQU0uQ0xJUFMuQzMuNzIwLmRhc2hfYmFzZWxpbmVfMV92MSJ9&_nc_ht=scontent.cdninstagram.com&_nc_cat=110&vs=2c15a6234d15886b&_nc_vs=HBksFQIYUmlnX3hwdl9yZWVsc19wZXJtYW5lbnRfc3JfcHJvZC9GMTQ2REVCQjdCNjBGRTVERDY0NDFERDlGOTFFQjE4Rl92aWRlb19kYXNoaW5pdC5tcDQVAALIAQAVAhg6cGFzc3Rocm91Z2hfZXZlcnN0b3JlL0dBZ3ZjUnRYSERsckh0RUJBTG1fNnlCaHVScEJicV9FQUFBRhUCAsgBACgAGAAbAogHdXNlX29pbAExEnByb2dyZXNzaXZlX3JlY2lwZQExFQAAJtLNr-uu6vcFFQIoAkMzLBdAMbMzMzMzMxgSZGFzaF9iYXNlbGluZV8xX3YxEQB1_gcA&ccb=9-4&oh=00_AYApxcGje2k_v_pwNhmsgqpn3W8CyWuMRH00idur2qbnfA&oe=66ECFE78&_nc_sid=1d576d
 
-    posts_to_download = {'DADpS7Kqe7y', 'DACU2h0PUDv'}
+    posts_to_download = {'C_hA0-GyT_K'}
     posts = [post for post in post_iter if post.shortcode in posts_to_download]  # get only the posts you want
 
     for post in posts:

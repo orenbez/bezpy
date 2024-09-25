@@ -61,9 +61,12 @@ PORT = 587
 # PORT = 587
 
 # Do not use - this was hacked: cancelled the password here: https://myaccount.google.com/apppasswords
+
+# SET UP HERE https://app.brevo.com/settings/keys/smtp, logged in with google
+# Key Name: "Master Password"
 # FROMADDR = "oren@bezalely.net"
-# USER = "oren.bezalely@gmail.com"
-# PSSWD = "8JxcA5b2Q6XwMDBO"
+# USER = "6fb558001@smtp-brevo.com"
+# PSSWD = "qLaj6FXGPUEbVxIn"
 # SMTP = 'smtp-relay.brevo.com'
 # PORT = 587
 

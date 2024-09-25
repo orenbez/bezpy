@@ -269,6 +269,11 @@ SELECT * FROM TBL WHERE DateColumn > DATE'01/14/2022'  -- SAME AS ABOVE
 SELECT * FROM TBL WHERE DateTimeColumn > TO_TIMESTAMP('01/14/2022 15:46:40', 'MM/DD/YYYY HH24:MI:SS')
 SELECT * FROM TBL WHERE DateTimeColumn > TIMESTAMP'01/14/2022 15:46:40'
 
+-- NULL CHECKS
+SELECT * FROM TBL WHERE COLUM_1 IS NULL;
+SELECT * FROM TBL WHERE COLUM_1 IS NOT NULL;
+
+
 -- ====================================================================
 -- Conversion Functions (https://www.techonthenet.com/oracle/functions)
 -- ====================================================================

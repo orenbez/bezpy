@@ -1,6 +1,6 @@
 # ======================================================================================================================
 # Program: send_email.py  see http://naelshiab.com/tutorial-send-email-python/ for basic example
-# Function: Sends email with bodytext, attachements can be listed, or an entire directory
+# Function: Sends email with bodytext, attachments can be listed, or an entire directory
 
 # Sample Use:
 #   send(['obezalely@tscinsurance.com'], "Subject goes here", "html body here", r'C:\T2\five.txt', r'C:\T2\Directory')
@@ -40,13 +40,16 @@ from email import encoders
 from email.utils import formataddr
 from time import sleep
 
-FROMADDR = "Oren Bez"
-USER = "oren.bezalely@gmail.com"
-PSSWD = "opwp jcqo nbdd zzvc"    # < -- created new app password 'bezpy_email' on  9/9/2024 here: https://myaccount.google.com/apppasswords
-SMTP = 'smtp.gmail.com'
-PORT = 587
+
+# HEADER_NAME = 'ONB REPORTS'
+# FROMADDR = "Oren Bez"
+# USER = "oren.bezalely@gmail.com"
+# PSSWD = "opwp jcqo nbdd zzvc"    # < -- created new app password 'bezpy_email' on  9/9/2024 here: https://myaccount.google.com/apppasswords
+# SMTP = 'smtp.gmail.com'
+# PORT = 587
 
 
+# HEADER_NAME = 'ONB REPORTS'
 # FROMADDR = "oren@bezalely.net"
 # USER = "oren@bezalely.net"
 # PSSWD = "Bez7383Ore"
@@ -54,21 +57,21 @@ PORT = 587
 # PORT = 587
 
 
+# HEADER_NAME = 'ONB REPORTS'
 # FROMADDR = "oren.bezalely@outlook.com"
 # USER = "oren.bezalely@outlook.com"
 # PSSWD = "badge7383"
 # SMTP = 'smtp.office365.com'
 # PORT = 587
 
-# Do not use - this was hacked: cancelled the password here: https://myaccount.google.com/apppasswords
 
-# SET UP HERE https://app.brevo.com/settings/keys/smtp, logged in with google
-# Key Name: "Master Password"
-# FROMADDR = "oren@bezalely.net"
-# USER = "6fb558001@smtp-brevo.com"
-# PSSWD = "qLaj6FXGPUEbVxIn"
-# SMTP = 'smtp-relay.brevo.com'
-# PORT = 587
+# see EastCoastUSA google sheets, Software tab
+HEADER_NAME = 'ONB REPORTS'
+FROMADDR = "orders@ecusad.com"
+USER = "7cc91c001@smtp-brevo.com"
+PSSWD = "brDzwsnFVSEZ9243"
+SMTP = 'smtp-relay.brevo.com'
+PORT = 587
 
 
 # ======================================================================================================================
@@ -96,7 +99,7 @@ def validate_email(email_addr):
                      'julian@fhia.net',                   # Julian Labossiere
                      'js@business-sci.com',               # Josh speyer
                      }
-    match = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', email_addr)
+    match = re.match(r'^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', email_addr)
     if not match:
         print(f'Email address: {email_addr} appears to be invalid')
         return False
@@ -137,10 +140,10 @@ def generate_file_list(fl):
 # ======================================================================================================================
 def send(toaddr_list, subject, bodytext='', *fl):
     """ Sends email to recipient list  <toaddr_list>  with <subject> and <bodytext>, you can add an optional number of
-        files and file directories as comma seperated arguments *fl  e.g.  'myfile.txt', 'C:\mypath\dir\' this will
+        files and file directories as comma separated arguments *fl  e.g.  'myfile.txt', r'C:\mypath\dir\' this will
         attach all files in the selected directory.  Relative or absolute paths may be used for the attachments."""
 
-    # For backward compatability - may have passed a string of one email instead of list of emails
+    # For backward compatibility - may have passed a string of one email instead of list of emails
     if type(toaddr_list) == str:
         toaddr_list = [toaddr_list]
 
@@ -149,7 +152,7 @@ def send(toaddr_list, subject, bodytext='', *fl):
     ##   THIS SECTION IS JUST FOR DISPLAY FOR THE EMAIL HEADER
     #msg['From'] = 'TSC REPORTS'
     #msg['From'] = formataddr(('TSC REPORTS', FROMADDR))  # default charset='utf-8'
-    msg['From'] = formataddr((str(Header('ONB REPORTS', 'utf-8')), FROMADDR))
+    msg['From'] = formataddr((str(Header(HEADER_NAME, 'utf-8')), FROMADDR))
     msg['Subject'] = subject        # e.g.  "Tina's Report Files Enclosed"
     #msg['To'] = 'undisclosed-recipients'  # This APPENDS to the recipient list, it does not SET it.
     #msg['Cc'] = 'addr@email.com'
@@ -211,8 +214,8 @@ def send(toaddr_list, subject, bodytext='', *fl):
             return message_7
     text = msg.as_string()
     try:
-        server.sendmail(FROMADDR, toaddr_list, text)
-        print(f"server.sendmail({FROMADDR}, {toaddr_list})")
+        response = server.sendmail(FROMADDR, toaddr_list, text)
+        print(f"server.sendmail({FROMADDR=}, {toaddr_list=})")
         sleep(1)
     except Exception as e:
         message_8 = f"Error 8: Unable to send email to {toaddr_list}"
@@ -235,7 +238,7 @@ if __name__ == "__main__":
     # sample input fields to command line for regression testing
     #sys.argv = ['send_email.py']
     #sys.argv = ['send_email.py', 'oren@bezalely.net', 'SUBJECT']
-    sys.argv = ['send_email.py', 'oren.bezalely@gmail.com', "TEST  2"]
+    sys.argv = ['send_email.py', 'bezoren@gmail.com', "TEST 345"]
     #sys.argv = ['send_email.py', 'obezalely@tscinsurance.com', 'TEST 8934', 'Regards,<br>Goodbye!']
     #sys.argv = ['send_email.py', ['oren.bezalely@gmail.com','obezalely@tscinsurance.com'], 'TEST 99999', 'Regards,<br>Goodbye!', 'test.txt']
     #sys.argv = ['send_email.py', ['obezalely@tscinsurance.com'], 'Subject goes here', 'body text here', 'test.txt']

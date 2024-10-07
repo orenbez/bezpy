@@ -19,6 +19,7 @@ def quick_sort(sequence):
 
     return quick_sort(items_lower) + [pivot] + quick_sort(items_greater)
 
+
 def bubble_sort(list_a):
     indexing_length = len(list_a) - 1 #SCan not apply comparison starting with last item of list (No item to right)
     is_sorted = False #Create variable of sorted and set it equal to false
@@ -113,15 +114,27 @@ def merge_sort(sequence):
             k += 1
     return sequence
 
-
+# ======================================================================================================================
+# Time Complexity
+# ======================================================================================================================
 # O(1) => Fixed time irrespective of list size (not necessarily instant, rather independent of data size)
-# O(log(n))) =>  this is log base 2 of n, if you double the data list you only add '1' to the order
+# O(log(n))) =>  this is log base 2 of n, so if you double the data list you only add '1' to the order
 # O(n) => if you double the list you will double the order
+# O(n * log(n))) =>  n x log base 2 of n. Time grows logarithmically with number of elements
 # O(n^2) => complexity increases quadratically with data-size
-# O(n*log(n))) =>  n x log base 2 of n
+# O(n * m) => complexity increases by two factors n, m.  e.g by traversing a 2d matrix
 # O(2^n) => complexity increases exponentially with data-size
-
 # O(1) > O(log(n)) > O(n) > O(n*log(n)) > O(n^2) > O(2^n) > O(n!)   https://www.bigocheatsheet.com/
+
+# ======================================================================================================================
+# Space Complexity
+# ======================================================================================================================
+# O(1) Constant Space e.g. Sum of list
+# O(n) Linear Space e.g. Copying a list or a string (list of chars)
+# O(n^2) Space Complexity Quadratic Space, 2d n * n matrix
+# O(log n)  =  algorithms that increases logarithmically with n  e.g. Binary search
+# ======================================================================================================================
+
 print(f'binary_search={binary_search([2,4,5,6,7,8,9,10,12,13,14], 10)}')   # Θ(log(n)) average, O(n) at worst
 print(f'insertion_sort{insertion_sort([5,6,7,8,9,8,7,6,5,6,7,8,9,0])}')    # O(n^2)
 print(f'selection_sort={selection_sort([5,6,7,8,9,8,7,6,5,6,7,8,9,0])}')   # O(n^2)

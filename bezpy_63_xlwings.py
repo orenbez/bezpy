@@ -1,7 +1,12 @@
+# ======================================================================================================================
 # Based on https://towardsdatascience.com/how-to-supercharge-excel-with-python-726b0f8e22c2
 # Documentation: https://docs.xlwings.org/
 # It seems that python needs to be installed on the users PC for this to work
-# ALTERNATIVE LIBRARY pyXLL
+# ======================================================================================================================
+# ALSO SEE pyXLL which is a Excel Add-in for python
+# ======================================================================================================================
+# ALSO SEE "Python in Excel" which is only available for some versions of Excel
+# ======================================================================================================================
 
 # ======================================================================================================================
 # 1.  In terminal type 'pip install xlwings'

@@ -326,9 +326,9 @@ if n > 3:
 # ======================================================================================================================
 
 t = ('a', 'b', 'c', 1, 2, 3, 1, False)
-t.count(1)   # Returns 2  i.e. count for the value 1
-t.index(1)   # Returns 3, index of first occurance of value 1
-t.index(1,4) # Returns 6, index of first occurance of value 1 starting from position 4
+t.count(1)     # Returns 2  i.e. count for the value 1
+t.index(1)     # Returns 3, index of first occurance of value 1
+t.index(1, 4)  # Returns 6, index of first occurance of value 1 starting from position 4
 
 # count(value, /) # Return number of occurrences of value.
 # index(value, start=0, stop=9223372036854775807, /) #  Return first index of value.
@@ -669,8 +669,8 @@ char_map4 = str.maketrans({'&': 'and', '@': 'at'})   # input is one dict which m
 #=========================================
 # s.is…() tests on chars categories
 #=========================================
-# s.isalnum()
-# s.isalpha()
+# s.isalnum()   # is alphanumeric
+# s.isalpha()   # is aphabetic
 # s.isascii()
 # s.isspace()   # space chars only
 # s.istitle()   # checks for title case
@@ -708,7 +708,11 @@ str3 = '\u00BD'     #fractional value  only str3.isnumeric() = True
 # s.format()              # see below
 # s.format_map()          # Formats specified values in a string
 # s.join(seq)     - joins list to a string using string 's' as separator
-':'.join(['aaa','bbb','ccc']) # returns 'aaa:bbb:ccc'
+':'.join(['aaa','bbb','ccc'])   # returns 'aaa:bbb:ccc'
+s = 'aB3 4 , ; eSe || 7'
+# Convert the string to lowercase and remove non-alphanumeric characters
+''.join(char.lower() for char in s if char.isalnum())   # 'ab34ese7'
+
 
 # s.split([sep, max])     # splits string to list based on the provided seperator, default is ' ',  max number of splits
 'aaa:bbb:ccc'.split(':')  # returns ['aaa', 'bbb', 'ccc']

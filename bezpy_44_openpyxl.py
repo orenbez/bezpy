@@ -1,3 +1,15 @@
+# ======================================================================================================================
+# Purpose: Reading and writing Excel files (.xlsx, .xlsm, .xltx, .xltm) from Python.
+# Functionality:
+#   Create, modify, and delete workbooks, worksheets, cells, and their contents.
+#   Read and write data from/to Excel files.
+#   Manipulate formatting, charts, formulas, and other Excel features.
+# Use Cases:
+#   Data analysis and manipulation.
+#   Generating reports.
+#   Automating Excel tasks without opening Excel.
+# ======================================================================================================================
+
 # Try this: https://towardsdatascience.com/automate-excel-reporting-with-python-233dd61fb0f2
 # Try this: https://analyticsindiamag.com/guide-to-openpyxl-a-python-module-for-excel/
 

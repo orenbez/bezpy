@@ -97,7 +97,7 @@ from sys import exit              # imports sys.exit() function, must be called 
 # set([1, 2, 3])	             # returns a Python set, set() returns an empty set
 # setattr(obj, attr, value)      # sets value of an attribute of object  (see bezpy01)
 # slice(1, 5, 2)	             # creates a slice object specified by range()
-# sorted([1, 6, 2])	             # returns sorted list from a given iterable e.g 'list'. for list.sort() and sorted python uses O(n Log n) Tim Sort Algorithm
+# sorted([1, 6, 2])	             # returns sorted list from a given iterable e.g 'list'.
 # staticmethod()                 # converts any function to be a static method for a class, see below  (replaced with decorator @staticmethod)
 # str(123)	                     # returns informal representation of an object as string
 # sum([1, 2, 3])	             # Sums items of an Iterable / container (note use math.prod() for product of items
@@ -594,12 +594,14 @@ min([(1, 4),(2, 2)], key=lambda x: x[0] + x[1])  # (2,2) returned as the sum of 
 #            Does not affect original list (not inplace).
 #            Can work with tuples, sets too unlike the 'sort' list method which is only for lists
 #            reverse=True for descending order
+#            both list.sort() and sorted python uses O(n * Log n) Tim Sort Algorithm
+#            but list.sort() is in-place and is therefore more memory efficient than sorted()
 # ======================================================================================================================
-sorted([2,5,1])       # [1, 2, 5]
-sorted(['c','d','a']) # ['a','b','c']
-sorted(['ab','aa'])   # ['aa', 'ab']
-sorted('hello')       # ['e', 'h', 'l', 'l', 'o']  - treated the string as a list
-sorted((2, 5, 1))     # [1, 2, 5]
+sorted([2,5,1])        # [1, 2, 5]
+sorted(['c','d','a'])  # ['a','b','c']
+sorted(['ab','aa'])    # ['aa', 'ab']
+sorted('hello')        # ['e', 'h', 'l', 'l', 'o']  - treated the string as a list
+sorted((2, 5, 1))      # [1, 2, 5]
 sorted([2, 5, 1], reverse=True) # [5, 2, 1]
 sorted([-5, -2, -7], key=abs) # [-2, -5, -7] 'key' provides the category of order. i.e. put in order of absolute value
 sorted([(1, 4), (2, 2)], key=lambda x: x[0] + x[1])  # [(2, 2), (1, 4)] put in ascending order for sum of tuple digits

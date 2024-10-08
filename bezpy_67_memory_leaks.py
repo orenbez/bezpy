@@ -13,8 +13,6 @@
 # 3) GCS (Garbage Collection System):
 # Python uses a method called reference counting to decide when an object needs to be collected in the memory.
 # ============================================================================================================
-
-
 import sys
 
 list_1 = list(range(1,100))
@@ -22,7 +20,6 @@ tuple_1 = tuple(range(1,100))
 
 print(sys.getsizeof(list_1))   # 848 bytes
 print(sys.getsizeof(tuple_1))  # tuples use less memory - 832 bytes
-
 
 # Have not understood this yet  3/23/2021
 
@@ -37,10 +34,8 @@ print(f'{len(found_objects)} objects after')
 for obj in found_objects[:3]:
     print(repr(obj)[:100])
 
-
 gc.enable()
-gc.collect()   # returns the number of unreachable objects found and cleaned within the namespace. In simple terms, the function releases the memory slot of unused objects
-
+gc.collect()   # returns the number of unreachable objects found and cleaned within the namespace. In simple terms, the function releases the memory slot of unused objects (forced garbage collection)
 
 
 import tracemalloc  # Built-In Module
@@ -51,8 +46,6 @@ time2 = tracemalloc.take_snapshot()
 stats = time2.compare_to(time1, 'lineno')
 for stat in stats[:3]:
     print(stat)
-
-
 
 # >>> punk=2077
 # >>> id(punk)

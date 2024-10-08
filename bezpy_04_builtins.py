@@ -572,21 +572,24 @@ delattr(d1, 'num_legs')          # deletes the attribute
 # ======================================================================================================================
 # max(collectible[, key]) - 'key' provides a function to customize the definition of max
 # ======================================================================================================================
-max(2,4,1)   # returns 4
-max([2,4,1]) # returns 4
-max([2,4,1], [3,1,1]) # returns [3,1,1] since first item is largest
-max([(1, 4),(2, 2)], key=lambda x: x[0] + x[1])  # (1,4) returned as the sum of the tuple digits is the max
+max(2, 4, 1)    # returns 4
+max([2, 4, 1])  # returns 4
+max([2, 4, 1], [3, 1, 1])  # returns [3,1,1] since first item is largest
+max([(1, 4), (2,  2)], key=lambda x: x[0] + x[1])  # (1,4) returned as the sum of the tuple digits is the max
 
 # Calcuate most frequent element in a list
 nums = [2, 2, 6, 2, 2, 3, 4, 2, 113, 2, 1]
-max(set(nums), key=nums.count) # Returns 2
+max(set(nums), key=nums.count) # returns 2
+
+d = {'a': 1, 'b': 2, 'c': 3}
+max(d, key=lambda k: d[k])  # returns 'c'
 
 # ======================================================================================================================
 # min(collectible[, key]) - 'key' provides a function to customize the order
 # ======================================================================================================================
-min(2,4,1) # returns 1
-min([2,4,1]) # returns 1
-min([(1, 4),(2, 2)], key=lambda x: x[0] + x[1])  # (2,2) returned as the sum of the tuple digits is the min
+min(2, 4, 1)    # returns 1
+min([2, 4, 1])  # returns 1
+min([(1, 4), (2, 2)], key=lambda x: x[0] + x[1])  # (2, 2) returned as the sum of the tuple digits is the min
 
 
 # ======================================================================================================================

@@ -433,7 +433,7 @@ os.path.split(r'C:\temp\s1\filename.ext')     #   ('C:\\temp\\s1', 'filename.ext
 # 'pathlib' from the standard library  see https://docs.python.org/3/library/pathlib.html
 # ======================================================================================================================
 # https://realpython.com/python-pathlib/
-# 'Path' is platform agnostic.  Will be WindowsPath only on windows and PosixPath on unix platforms
+# 'Path' is platform agnostic.  Will be WindowsPath for windows and PosixPath for unix platforms e.g. linux macOS
 # ============================================================================================================
 from pathlib import Path # stores full Path Object (for all platforms - not just windows) 
 wp = Path.home() # WindowsPath('C:/Users/obezalely')  <class 'pathlib.WindowsPath'> 
@@ -448,6 +448,7 @@ os.path.join(wp, 'file.txt')
 fp = Path(__file__)  # file path to this file  i.e 'C:\...\bezpy_05_files.py'
 fp = Path(r'.\myfiles\subfolder\input.txt')        # WindowsPath('myfiles/subfolder/input.txt')
 fp = Path('myfiles', 'subfolder', 'input.txt')     # As above
+fp = Path('myfiles') / 'subfolder' / 'input.txt'   # As above
 
 fp                      # returns WindowsPath('myfiles/subfolder/input.txt')
 fp.is_absolute()        # returns False, path is a relative path
@@ -461,6 +462,7 @@ fp.is_dir()             # returns bool
 fp.is_file()            # returns bool
 fp.exists()             # returns bool
 # fp.mkdir()            # creates dir with the file path
+# fp.mkdir(exist_ok=True)  # will not fail if path exists
 # fp.relative_to(fp2)   # returns a patial path from fp2 parent onwards
 fp.home()               # returns home path WindowsPath('C:/Users/orenb')
 fp.cwd()                # returns current working directory
@@ -472,7 +474,7 @@ fp.suffix               # returns '.txt'
 fp.suffixes             # will return A list of the path’s file extensions:  e.g. xxx.tar.gz -> ['tar', 'gz']
 fp.with_suffix('.py')   # returns path and replaces suffix to .py
 fp.with_suffix('')      # returns path and removes suffix
-fp.as_posix()           # 'C:/Users/obezalely/OneDrive/PYTHON/myfiles/input.txt'  Returns a string representation of the path with forward slashes (/):
+fp.as_posix()           # 'C:/Users/obezalely/OneDrive/PYTHON/myfiles/input.txt'  Returns a string representation of the path with forward slashes (/) for unix platforms
 str(fp)                 # 'C:/Users/obezalely/OneDrive/PYTHON/myfiles/input.txt'
 fp.parts                # Returns tuple e.g. ('myfiles', 'subfolder', 'input.txt')
 '.'.join(fp.with_suffix('').parts)  # Converts filepath to dot notation
@@ -519,8 +521,6 @@ sorted(dirpath.iterdir(), key=os.path.getmtime)[-1]   # WindowsPath('myfiles/tou
 # ============================================================================================================
 # The goal of pathlib2 is to provide a backport of standard pathlib module which tracks the standard library module, 
 # so all the newest features of the standard pathlib can be used also on older Python versions
-# 
-# 
 
 # ============================================================================================================
 # tempfile from the standard library

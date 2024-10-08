@@ -57,8 +57,10 @@ hebrewcal.utils.FESTIVALS          # ['Rosh Hashana', 'Yom Kippur', 'Succos', ..
 hebrewcal.utils.MONTH_NAMES        # ['Nissan', 'Iyar', ..., 'Adar 2']
 hebrewcal.to_hebrew_numeral(5784)  # 'תשפ״ד'
 
+# https://docs.google.com/document/d/1ZQY0HCbv5B1_0XrV--6nTDoSeRjvPs_8HXpkYotTIiU/edit   <- PRINT HERE
+
 if __name__ == '__main__':
-    year = 5784
+    year = 5785  # = 2024/25
     print(f'Shabbat Out Times for Great Neck: {year}')
     for h_date in parshios.parshatable(year=year, israel=False).keys():
         hewbrew_date_str = h_date.hebrew_date_string(thousands=False)
@@ -67,8 +69,8 @@ if __name__ == '__main__':
         candles = (times[0] - timedelta(minutes=18)).strftime('%m/%d/%Y %H:%M')
         shabbat_in = times[0].strftime('%m/%d/%Y %H:%M')
         shabbat_out = times[1].strftime('%m/%d/%Y %H:%M')
-        parsha_e = parshios.getparsha_string(h_date, hebrew=False)
-        parsha_h = parshios.getparsha_string(h_date, hebrew=True)
-        print(f'Candles: {candles}, Sunset: {shabbat_in}, Shabat Out: {shabbat_out} | {parsha_e} ({parsha_h} - {hewbrew_date_str})')
+        parsha_e = parshios.getparsha_string(h_date, hebrew=False)  # English Name
+        parsha_h = parshios.getparsha_string(h_date, hebrew=True)   # Hebrew Name
+        print(f'Candles: {candles}, Sunset: {shabbat_in}, Shabat Out: {shabbat_out} | {parsha_h} - {hewbrew_date_str}')
 
 

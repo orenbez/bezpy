@@ -595,19 +595,16 @@ print('hello' in x)
 # ======================================================================================================================
 x = "s12A34z56a78c9HH0"   # similar to  ('s', '1', '2', ... , 'H', '0')
 
-
 # s.find(str)   # function syntax:  str.find(str, beg=0, end=len(string))  FIRST Index if found and -1 otherwise
 # s.index(str)  # function is the same but throws an error if substring not found
 # s.rfind(str)  # find last substring
 # s.rindex(str) # find last substring
 # str in s      # returns bool True if substring present
 
-
 x = "Elon is learning Python!"
-print(x)
-print(len(x)) # returns length of string
-print (x.find("is"))    # returns 5
-print (x.find("on",7))  # returns 21
+len(x)  # returns length of string
+x.find("is")     # returns 5
+x.find("on",7)   # returns 21
 
 print(x.capitalize()) # makes first char of string capital and rest lowercase
 print(x.lower())  # all chars. lower
@@ -627,6 +624,8 @@ y = x.split(':') # returns list ['split','to','list']
 z = ':'.join(y)  # joins list to a string using ':' as separator
 print(z)         # "split:to:list"
 print(x[::-1])   # reverse the string
+is_palindrome = lambda s: s == s[::-1]   # is_palindrome lambda function
+
 string1 = "xxx is xxx is xxx is"
 print (string1.replace("is", "was"))     # "xxx was xxx was xxx was"
 print (string1.replace("is", "was", 2))  # "xxx was xxx was xxx is"  (only first two occurrences)

@@ -31,6 +31,10 @@ if __name__ == '__main__':
         mod_spec.loader.exec_module(module)   # loads module, this step doesn't seem to be required for 'built-in' modules
         module.triple_me(3)   # returns 9
 
+    module1 = importlib.import_module('package.module1')                    # compare with 'from package import module1'
+    obj3 = importlib.import_module(name='package.module1', package='obj3')  # compare with 'from package.module1 import obj3'
+
+# methods like 'getattr' 'callable', 'isclass', 'issubclass' can be now used on the modules/objects
 # ======================================================================================================================
 # see bezpy_156_pkgutil.py,  Standard Library module provides utilities for the import system, package support.
 # ======================================================================================================================

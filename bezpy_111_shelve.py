@@ -7,8 +7,7 @@
 # The values are pickled and written to a database created and managed by anydbm
 # shelve builds on top of pickle and implements a serialization dictionary where objects are pickled,
 # but associated with a key. You can load your shelved data file and access your pickled objects via keys.
-
-
+# ======================================================================================================================
 
 # Pickle example
 import pickle

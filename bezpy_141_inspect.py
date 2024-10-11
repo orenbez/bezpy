@@ -14,7 +14,6 @@ inspect.isclass(obj)          # True - inspects object and returns bool
 
 obj = A().methd
 inspect.ismethod(obj)         # True - inspects object and returns bool
-
 inspect.iscode(obj)           # False - inspects object and returns bool
 
 import math
@@ -24,6 +23,7 @@ inspect.ismodule(obj)         # True - inspects object and returns bool
 
 def fn():
     pass
+
 obj = fn
 inspect.isfunction(obj)        # True - inspects object and returns bool
 
@@ -32,8 +32,14 @@ inspect.isbuiltin(obj)        # True - inspects object and returns bool
 
 
 import math
-inspect.getmembers(math)        # shows the member functions of any module or object
-inspect.signature(math.perm)    # returns signature  <Signature (n, k=None, /)>
+inspect.getmembers(math)        # shows All the members of any module or object as list of tuples (name, obj)
+# [ ... ('perm', <function math.perm(n, k=None, /)>),  ('pi', 3.141592653589793),  ('pow', <function math.pow(x, y, /)>), ... ]
+
+import datetime
+inspect.getmembers(object=datetime, predicate=inspect.isclass)  # returns only the 'class' members
+# [('date', datetime.date),  ('datetime', datetime.datetime),  ('time', datetime.time),  ('timedelta', datetime.timedelta),  ('timezone', datetime.timezone),  ('tzinfo', datetime.tzinfo)]
+
+inspect.signature(math.perm)    # returns signature object <Signature (n, k=None, /)>
 
 
 # getsource(): returns the source code of a module, class, method, or a function
@@ -49,8 +55,8 @@ inspect.getsource(fun)           # 'def fun(a, b):\n    return a * b\n'
 
 # getmodule(): This method returns the module of a particular object
 import collections
-inspect.getmodule(collections)    # <module 'collections' from 'C:\\Users\\orenb\\AppData\\Local\\Programs\\Python\\Python310\\lib\\collections\\__init__.py'>
-
+obj = inspect.getmodule(collections)    # <module 'collections' from 'C:\\Users\\orenb\\AppData\\Local\\Programs\\Python\\Python310\\lib\\collections\\__init__.py'>
+obj is collections  # True
 
 # stack(): This method helps in examining the interpreter stack or the order in which functions were called.
 inspect.stack(context=1)          # Return a list of frame records for the caller’s stack

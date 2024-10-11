@@ -1,32 +1,63 @@
 # ======================================================================================================================
-# Standard Library module provides utilities for the import system, in particular package support.
+# Standard Library module
 # https://docs.python.org/3/library/pkgutil.html
 # ======================================================================================================================
-import pkgutil  # built-in library pkgutil
-x = pkgutil.get_data('package', '/subpackage/sample.hocon').decode()    # 'package' seems to require an __init__.py file
-x = pkgutil.get_data('package', 'subpackage/sample.hocon').decode()     # works as above
-x = pkgutil.get_data('package.subpackage', '/sample.hocon').decode()    # works as above
-x = pkgutil.get_data('package.subpackage', 'sample.hocon').decode()     # works as above
+import pkgutil   # built-in library pkgutil provides utilities for the import system, in particular package support.
+import zipimport #  built-in library provides support for importing Python modules from Zip archives
+import importlib
 
+# 'x' stores contents of sample.hocon as a string.  All lines below work the same
+x = pkgutil.get_data('package', '/subpackage/sample.hocon').decode()   # 'package' requires an __init__.py file,
+x = pkgutil.get_data('package', 'subpackage/sample.hocon').decode()    # 'package' requires an __init__.py file
+x = pkgutil.get_data('package.subpackage', '/sample.hocon').decode()   # 'subpackage' also requires an __init__.py file
+x = pkgutil.get_data('package.subpackage', 'sample.hocon').decode()    # 'subpackage' also requires an __init__.py file
+
+x = pkgutil.get_data('mylib', 'mymock.py').decode()  # stores .py file as a string
+'class MyClass3' in x # True
+
+list(pkgutil.walk_packages(['package']))
+# [ModuleInfo(module_finder=FileFinder('C:\\github\\package'), name='module1', ispkg=False),
+#  ModuleInfo(module_finder=FileFinder('C:\\github\\package'), name='module2', ispkg=False),
+#  ModuleInfo(module_finder=FileFinder('C:\\github\\package'), name='module3', ispkg=False),
+#  ModuleInfo(module_finder=FileFinder('C:\\github\\package'), name='subpackage', ispkg=True)]
+
+for path, name, ispkg in pkgutil.walk_packages(['package']):
+    print(path, name, ispkg)
+# FileFinder('C:\\github\\package') module1 False
+# FileFinder('C:\\github\\package') module2 False
+# FileFinder('C:\\github\\package') module3 False
+# FileFinder('C:\\github\\package') subpackage True
+
+
+list(pkgutil.iter_modules(['package']))
+# [ModuleInfo(module_finder=FileFinder('C:\\github\\package'), name='module1', ispkg=False),
+#  ModuleInfo(module_finder=FileFinder('C:\\github\\package'), name='module2', ispkg=False),
+#  ModuleInfo(module_finder=FileFinder('C:\\github\\package'), name='module3', ispkg=False),
+#  ModuleInfo(module_finder=FileFinder('C:\\github\\package'), name='subpackage', ispkg=True)]
+
+for path, name, ispkg in pkgutil.iter_modules(['package']):
+    if not ispkg:
+        module = importlib.import_module(f'package.{name}')
+        print(name, [x for x in dir(module) if not x.startswith('_')])
+# module1 ['obj1', 'obj2', 'obj3']
+# module2 ['obj1']
+# module3 ['obj1', 'ret_obj1']
 
 # pkgutil.extend_path
 # pkgutil.find_loader
-# pkgutil.get_data                # reads file into variable
-# pkgutil.get_importer
-# pkgutil.get_loader
-# pkgutil.importlib
+# pkgutil.get_data(package, resource)  # reads file into variable
+# pkgutil.get_importer(path_item)
+# pkgutil.get_loader(module_or_name)
+# pkgutil._get_spec(finder, name)
 # pkgutil.iter_importer_modules
 # pkgutil.iter_importers
-# pkgutil.iter_modules           # iterator of all built-in modules (see Python Notes)
+# pkgutil.iter_modules()     # iterator of all built-in modules (see Python Notes)
+# pkgutil.iter_modules(list_of_paths)  # returns iterator of all subpackages and modules
+# pkgutil.walk_packages(list_of_paths)  # returns iterator of all subpackages and modules  (seems to be same as above)
 # pkgutil.iter_zipimport_modules
 # pkgutil.namedtuple
-# pkgutil.os
 # pkgutil.read_code
 # pkgutil.simplegeneric
-# pkgutil.sys
-# pkgutil.walk_packages
-# pkgutil.warnings
-# pkgutil.zipimport
 # pkgutil.zipimporter
 
 # ======================================================================================================================

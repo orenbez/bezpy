@@ -25,7 +25,7 @@ if __name__ == '__main__':
     # clean-up
     if os.path.exists(output_path):
         rmtree(output_path)
-    os.mkdir(output_path)
+    os.makedirs(output_path)
 
     sql = glob(f"./**/*.sql", recursive=True)
     py = glob(f"./**/bez*.py", recursive=True)

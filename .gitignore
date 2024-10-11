@@ -34,4 +34,3 @@
 *.rdb
 leads.py
 tmp.py
-__init__.py

@@ -1,4 +1,11 @@
-import inspect    # from standard-library, provides an interface to the Python debugger
+# ======================================================================================================================
+# inspect from standard-library, provides an interface to the Python debugger, can evaluate object types
+# ======================================================================================================================
+# see also bezpy_156_pkgutil.py,  Standard Library module provides utilities for the import system, package support.
+# see also bezpy_106_importlib.py,  Standard Library module provides the implementation to Python's import statement
+# ======================================================================================================================
+
+import inspect
 
 class A(object):
     def methd(self):
@@ -62,11 +69,9 @@ obj is collections  # True
 inspect.stack(context=1)          # Return a list of frame records for the caller’s stack
 inspect.stack()                   # same as above
 
-
 prev_frame = inspect.currentframe().f_back   # returns previous frame
 filename, line_number, function_name, lines, index = inspect.getframeinfo(prev_frame)
 inspect.getmodule(prev_frame)  # returns module of previous frame
-
 
 # getdoc(): The getdoc() method returns the documentation of the argument in this method as a string.
 inspect.getdoc(math.perm)  #  'Number of ways to choose k items from n items without repetition and with order ...

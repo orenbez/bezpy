@@ -5,6 +5,9 @@
 # Note the 'imp' module was deprecated in 3.4
 # IN addition the importlib library can do the following
 # ======================================================================================================================
+# see also bezpy_156_pkgutil.py,  Standard Library module provides utilities for the import system, package support.
+# see also bezpy_114_inspect.py,  Standard Library module provides utilities to inspect objects
+# ======================================================================================================================
 
 import importlib
     
@@ -33,8 +36,6 @@ if __name__ == '__main__':
 
     module1 = importlib.import_module('package.module1')                    # compare with 'from package import module1'
     obj3 = importlib.import_module(name='package.module1', package='obj3')  # compare with 'from package.module1 import obj3'
-
-# methods like 'getattr' 'callable', 'isclass', 'issubclass' can be now used on the modules/objects
-# ======================================================================================================================
-# see bezpy_156_pkgutil.py,  Standard Library module provides utilities for the import system, package support.
-# ======================================================================================================================
+    # ==================================================================================================================
+    # methods like 'getattr' 'callable', 'isclass', 'issubclass' can be now used on the modules/objects
+    # ==================================================================================================================

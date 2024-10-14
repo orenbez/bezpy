@@ -1,10 +1,14 @@
 # ======================================================================================================================
-# Standard Library module
+# pkgutil: Standard Library module (Package Support)
 # https://docs.python.org/3/library/pkgutil.html
 # ======================================================================================================================
-import pkgutil   # built-in library pkgutil provides utilities for the import system, in particular package support.
-import zipimport #  built-in library provides support for importing Python modules from Zip archives
-import importlib
+# see also bezpy_114_inspect.py,  Standard Library module provides utilities to inspect objects
+# see also bezpy_106_importlib.py,  Standard Library module provides the implementation to Python's import statement
+# ======================================================================================================================
+
+import pkgutil    # built-in library pkgutil provides utilities for the import system, in particular package support.
+import zipimport  # built-in library provides support for importing Python modules from Zip archives
+import importlib  # see bezpy_106_importlib.py
 
 # 'x' stores contents of sample.hocon as a string.  All lines below work the same
 x = pkgutil.get_data('package', '/subpackage/sample.hocon').decode()   # 'package' requires an __init__.py file,
@@ -63,26 +67,31 @@ for path, name, ispkg in pkgutil.iter_modules(['package']):
 # ======================================================================================================================
 # List of built-in modules ...
 
-sorted([m.name for m in list(pkgutil.iter_modules()) if not m.name.startswith('_')])
-# ['abc', 'aifc', 'antigravity', 'argparse', 'ast', 'asynchat', 'asyncio', 'asyncore', 'base64', 'bdb', 'binhex',
-# 'bisect', 'bz2', 'cProfile', 'calendar', 'cgi', 'cgitb', 'chunk', 'cmd', 'code', 'codecs', 'codeop', 'collections',
-# 'colorsys', 'compileall', 'concurrent', 'configparser', 'contextlib', 'contextvars', 'copy', 'copyreg', 'crypt',
-# 'csv', 'ctypes', 'curses', 'dataclasses', 'datetime', 'dbm', 'decimal', 'difflib', 'dis', 'distutils', 'doctest',
-# 'email', 'encodings', 'ensurepip', 'enum', 'face', 'filecmp', 'fileinput', 'fnmatch', 'fractions', 'ftplib',
-# 'functools', 'genericpath', 'getopt', 'getpass', 'gettext', 'glob', 'graphlib', 'gzip', 'hashlib', 'heapq', 'hmac',
-# 'html', 'http', 'idlelib', 'imaplib', 'imghdr', 'imp', 'importlib', 'inspect', 'io', 'ipaddress', 'json', 'keyword',
-# 'lib2to3', 'linecache', 'locale', 'logging', 'lzma', 'mailbox', 'mailcap', 'mimetypes', 'modulefinder', 'msilib',
-# 'multiprocessing', 'netrc', 'nntplib', 'ntpath', 'nturl2path', 'numbers', 'opcode', 'operator', 'optparse', 'os',
-# 'pathlib', 'pdb', 'pickle', 'pickletools', 'pip', 'pipes', 'pkg_resources', 'pkgutil', 'platform', 'plistlib',
-# 'poplib', 'posixpath', 'pprint', 'profile', 'pstats', 'pty', 'py_compile', 'pyclbr', 'pydoc', 'pydoc_data',
-# 'pyexpat', 'queue', 'quopri', 'random', 're', 'reprlib', 'rlcompleter', 'runpy', 'sched', 'secrets', 'select',
-# 'selectors', 'setuptools', 'shelve', 'shlex', 'shutil', 'signal', 'site', 'smtpd', 'smtplib', 'sndhdr', 'socket',
-# 'socketserver', 'sqlite3', 'sre_compile', 'sre_constants', 'sre_parse', 'ssl', 'stat', 'statistics', 'string',
-# 'stringprep', 'struct', 'subprocess', 'sunau', 'symtable', 'sysconfig', 'tabnanny', 'tarfile', 'telnetlib',
-# 'tempfile', 'test', 'textwrap', 'this', 'threading', 'timeit', 'tkinter', 'token', 'tokenize', 'trace', 'traceback',
-# 'tracemalloc', 'tty', 'turtle', 'turtledemo', 'types', 'typing', 'unicodedata', 'unittest', 'urllib', 'uu', 'uuid',
-# 'venv', 'warnings', 'wave', 'weakref', 'webbrowser', 'winsound', 'wsgiref', 'xdrlib', 'xml', 'xmlrpc', 'zipapp',
-# 'zipfile', 'zipimport', 'zoneinfo']
+sorted([m.name for m in list(pkgutil.iter_modules()) if not m.name.startswith('_') and not m.name.startswith('bezpy')])
+# ['abc', 'aifc', 'airshow', 'algorithms', 'antigravity', 'argparse', 'ast', 'asyncio', 'base64', 'bdb', 'bisect',
+# 'bz2', 'cProfile', 'calendar', 'certifi', 'cgi', 'cgitb', 'charset_normalizer', 'check_ip', 'chunk', 'cmd', 'code',
+# 'codecs', 'codeop', 'collections', 'colorama', 'colorsys', 'compileall', 'concurrent', 'configparser', 'contextlib',
+# 'contextvars', 'copy', 'copyreg', 'crypt', 'csv', 'ctypes', 'curses', 'dataclasses', 'datetime', 'dbm', 'decimal',
+# 'difflib', 'dis', 'doctest', 'email', 'encodings', 'ensurepip', 'enum', 'filecmp', 'fileinput', 'fnmatch',
+# 'fractions', 'ftplib', 'functools', 'genericpath', 'getopt', 'getpass', 'gettext', 'glob', 'graphlib', 'gzip',
+# 'hashlib', 'heapq', 'hmac', 'html', 'http', 'idlelib', 'idna', 'imaplib', 'imghdr', 'importlib', 'iniconfig',
+# 'inspect', 'instaloader', 'interpreterInfo', 'io', 'ipaddress', 'json', 'keyword', 'leet_code', 'lib2to3',
+# 'linecache', 'locale', 'logging', 'lzma', 'mailbox', 'mailcap', 'mimetypes', 'modulefinder', 'msilib',
+# 'multiprocessing', 'mylib', 'netrc', 'nntplib', 'ntpath', 'nturl2path', 'numbers', 'opcode', 'operator', 'optparse',
+# 'os', 'package', 'packaging', 'pathlib', 'pdb', 'pickle', 'pickletools', 'pip', 'pipes', 'pkgutil', 'platform',
+# 'plistlib', 'pluggy', 'poplib', 'posixpath', 'pprint', 'profile', 'pstats', 'pty', 'py', 'py_compile', 'pyclbr',
+# 'pycompletionserver', 'pydev_app_engine_debug_startup', 'pydev_console', 'pydev_coverage', 'pydev_ipython',
+# 'pydev_pysrc', 'pydevconsole', 'pydevd', 'pydevd_concurrency_analyser', 'pydevd_file_utils', 'pydevd_plugins',
+# 'pydevd_pycharm', 'pydevd_tracing', 'pydoc', 'pydoc_data', 'pyexpat', 'pytest', 'queue', 'quopri', 'random', 're',
+# 'reprlib', 'requests', 'rlcompleter', 'runfiles', 'runpy', 'sched', 'secrets', 'select', 'selectors', 'setup_cython',
+# 'shelve', 'shlex', 'shutil', 'signal', 'site', 'smtplib', 'sndhdr', 'socket', 'socketserver', 'sqlite3',
+# 'sre_compile', 'sre_constants', 'sre_parse', 'ssl', 'stat', 'statistics', 'string', 'stringprep', 'struct',
+# 'subprocess', 'sunau', 'symtable', 'sysconfig', 'tabnanny', 'tarfile', 'telnetlib', 'temp', 'tempfile', 'test',
+# 'textwrap', 'this', 'threading', 'timeit', 'tkinter', 'token', 'tokenize', 'tomllib', 'trace', 'traceback',
+# 'tracemalloc', 'tty', 'turtle', 'turtledemo', 'types', 'typing', 'unicodedata', 'unittest', 'urllib', 'urllib3',
+# 'uu', 'uuid', 'venv', 'warnings', 'wave', 'weakref', 'webbrowser', 'winsound', 'wsgiref', 'xdrlib', 'xml', 'xmlrpc',
+# 'zipapp', 'zipfile', 'zipimport', 'zoneinfo']
+
 
 
 sorted([(m.name, m.ispkg, m.module_finder) for m in pkgutil.iter_modules() if not m.name.startswith('_') and not m.name.startswith('bezpy')])

@@ -360,7 +360,6 @@ print(x)
 # ============================================================================================================
 # Immutable object Access only   PASS BY VALUE  does not require global declaration
 # ============================================================================================================
-
 def p2():
     print(x)  # will access the global value for read only, can not reassign. doesn't require 'global' declaration
 
@@ -384,8 +383,6 @@ print(x)
 # 5
 # 5
 
-
-
 # =====================================================================
 #  Mutable objects get modified when passed   PASS BY REFERENCE
 # =====================================================================
@@ -400,7 +397,6 @@ print(x)
 # [5]
 # [5, 9]
 
-
 # ========================================================================================
 #  Mutable objects don't even need to be passed don't need global declaration to be modified
 # ========================================================================================
@@ -414,7 +410,6 @@ print(x)
 # Output same as above
 #[5]
 #[5, 9]
-
 
 # ============================================================================================================
 def f1(): # prints the current value in the global scope (Access allowed without 'global' declaration)
@@ -438,8 +433,6 @@ def f5(gl3): # prints the locally defined value
     gl3 = gl3 + 1 # does not modify the value in the global scope 
     print('id(gl3): ',id(gl3), '; Value:', gl3)
 
-
-
 gl = 100 # Assigned in the Global scope, automatically has global access
 print('id(gl): ',id(gl), '; Value:', gl)
       # id(gl):  1271084242384 ; Value: 100
@@ -450,12 +443,10 @@ f3()  # id(gl2): 1271141210992 ; Value: 400
 f1()  # id(gl):  1271141210000 ; Value: 300
 f4()  # id(gl2): 1271141210992 ; Value: 400
 
-
-gl3 = 300 # Assigned in the Global scope, automatically has global access
+gl3 = 300  # Assigned in the Global scope, automatically has global access
 print('id(gl3): ',id(gl3), '; Value:', gl3)  # id(gl3):  1271141210000 ; Value: 300
 f5(gl3)                                      # id(gl3):  1271141211888 ; Value: 301
 print('id(gl3): ',id(gl3), '; Value:', gl3)  # id(gl3):  1271141210000 ; Value: 300
-
 
 # ======================================================================================================================
 # using the 'nonlocal' keyword is similar to 'global' but used for nested functions 
@@ -490,15 +481,12 @@ def closure_function(msg):
         print(msg)
     return printer  # returns the nested function
 
-
 def init_count():
     """
     demonstrates how a closure can modify the outerscope count and maintain the value.  The closure allows you to
     capture the variables from the outer function and use them again even after the function has been exited.
     """
-
     count = 0
-
     def add(amount):
         nonlocal count
         count += amount
@@ -512,11 +500,11 @@ x(1)  # returns 2
 x(1)  # returns 3
 
 
-
 def inner_2():
     global b   # 'b' can be set here and used in outer_2
     print(b)   # this will access the b defined in outer_2
     b = 200    # will modify the global b
+
 
 def outer_2():
     global b

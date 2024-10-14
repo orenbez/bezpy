@@ -436,6 +436,7 @@ for i in range(len(x)):
 # lst.insert(idx,val)  insert item at index
 # lst.pop(idx)         value remove & return item at index idx (default last)
 # lst.remove(val)      remove first item with value val
+# del list1[idx]       remove idx entry from list
 # lst.sort()           sort list in place, returns None.  Note call [1,3,2].sort() is of no use as the list is discarded
 # lst.reverse()        reverse list in place, returns None
 	
@@ -1305,8 +1306,8 @@ switch3(5) # returns 'B'
 def switch4(x):
     """ this acts as a switch function in other languages for cases within a range """
     return  {
-        x in {1,2,3}   : 2*x,
-        x in {4,5,6}   : 3*x,
+        x in {1, 2, 3}   : 2 * x,
+        x in {4, 5, 6}   : 3 * x,
         x > 6          : 20,
        }[True]
 
@@ -1333,8 +1334,7 @@ switch4(5) # returns 15
 # get_mood('Wednesday')
 # >> 'Meh...'
 #
-#
-#
+
 # def alarm(item):
 #     match item:
 #         case [x, y] if x == y:

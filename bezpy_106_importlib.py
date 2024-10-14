@@ -6,7 +6,7 @@
 # IN addition the importlib library can do the following
 # ======================================================================================================================
 # see also bezpy_156_pkgutil.py,  Standard Library module provides utilities for the import system, package support.
-# see also bezpy_114_inspect.py,  Standard Library module provides utilities to inspect objects
+# see also bezpy_141_inspect.py,  Standard Library module provides utilities to inspect objects
 # ======================================================================================================================
 
 import importlib

@@ -2,7 +2,7 @@
 # pkgutil: Standard Library module (Package Support)
 # https://docs.python.org/3/library/pkgutil.html
 # ======================================================================================================================
-# see also bezpy_114_inspect.py,  Standard Library module provides utilities to inspect objects
+# see also bezpy_141_inspect.py,  Standard Library module provides utilities to inspect objects
 # see also bezpy_106_importlib.py,  Standard Library module provides the implementation to Python's import statement
 # ======================================================================================================================
 
@@ -34,6 +34,7 @@ for path, name, ispkg in pkgutil.walk_packages(['package']):
 
 
 list(pkgutil.iter_modules(['package']))
+list(pkgutil.iter_modules(['C:\\github\\package']))  # Same as above
 # [ModuleInfo(module_finder=FileFinder('C:\\github\\package'), name='module1', ispkg=False),
 #  ModuleInfo(module_finder=FileFinder('C:\\github\\package'), name='module2', ispkg=False),
 #  ModuleInfo(module_finder=FileFinder('C:\\github\\package'), name='module3', ispkg=False),

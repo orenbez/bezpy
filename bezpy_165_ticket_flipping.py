@@ -22,13 +22,18 @@
 # https://github.com/Nedervino/TicketCrawler
 
 
-# In the United States, using automated bots to purchase and resell event tickets is illegal under the Better Online Ticket Sales (BOTS) Act of 2016. This law prohibits the use of bots to bypass purchasing restrictions, such as ticket limits or security measures, on ticketing websites for events like concerts, theater performances, and sports.
-# The BOTS Act makes it illegal not only to acquire tickets through these means but also to resell tickets obtained in violation of the statute if the seller was involved in or knowingly benefited from the illegal purchase. Enforcement of this law falls under the Federal Trade Commission (FTC) and state attorneys general.
+# In the United States, using automated bots to purchase and resell event tickets is illegal under the Better Online Ticket Sales (BOTS) Act of 2016.
+# This law prohibits the use of bots to bypass purchasing restrictions, such as ticket limits or security measures, on ticketing websites for events like concerts, theater performances, and sports.
+# The BOTS Act makes it illegal not only to acquire tickets through these means but also to resell tickets obtained in violation of the statute if the seller was involved in or knowingly benefited from the illegal purchase.
+# Enforcement of this law falls under the Federal Trade Commission (FTC) and state attorneys general.
 
 # Automating purchases may not be allowed, so make sure you comply with the platform’s terms
 # Check the API documentation for rate limits (e.g., requests per minute/hour) to avoid getting blocked.
 # Review terms of service carefully to ensure your app adheres to usage policies. For example, some platforms may restrict reselling behavior
 # Even with API access, ensure that you're buying tickets within platform limits (e.g., 4-6 tickets per user). Automating ticket purchasing could inadvertently violate rules, even if your intent is legal.
+
+# Ticket resale is a form of arbitrage that arises when the number demanded at the sale price exceeds the number supplied (that is, when event organizers charge less than the equilibrium prices for the tickets).
+# https://en.wikipedia.org/wiki/Ticket_resale
 
 
 import requests

@@ -66,13 +66,39 @@ from time import sleep
 
 
 # see EastCoastUSA google sheets, Software tab
-HEADER_NAME = 'ONB REPORTS'
-FROMADDR = "orders@ecusad.com"
-USER = "7cc91c001@smtp-brevo.com"
-PSSWD = "brDzwsnFVSEZ9243"
-SMTP = 'smtp-relay.brevo.com'
-PORT = 587
+# HEADER_NAME = 'ONB REPORTS'
+# FROMADDR = "orders@ecusad.com"
+# USER = "7cc91c002@smtp-brevo.com"
+# PSSWD = "4OEGgvsSHRpkfY3K"
+# SMTP = 'smtp-relay.brevo.com'
+# PORT = 587
 
+HEADER_NAME = 'ECUSAD REPORTS BLUEHOST'   #_ NOT_WORKING
+FROMADDR = "orders@ecusad.com"
+USER = "orders@ecusad.com"
+PSSWD = "ec1807USA!"
+SMTP = 'box5726.bluehost.com'
+PORT = 25
+
+
+
+# HEADER_NAME = 'OREN REPORTS BLUEHOST'  # _ NOT_WORKING
+# FROMADDR = "oren@bezalely.net"
+# USER = "oren@bezalely.net"
+# PSSWD = "Bez7383Ore"
+# SMTP = 'box5804.bluehost.com'
+# PORT = 25
+
+
+
+# Username	Your email address: john@example.com
+# Password	The password for that email account.
+# Incoming Server	box5804.bluehost.com
+# Incoming Port	143 (IMAP) or 110 (POP3)
+# Outgoing Server	box5804.bluehost.com
+# Outgoing Port	25 (SMTP)
+# Authentication	Password
+#  encryption> None
 
 # ======================================================================================================================
 #   validate_args():
@@ -140,7 +166,7 @@ def generate_file_list(fl):
 # ======================================================================================================================
 def send(toaddr_list, subject, bodytext='', *fl):
     """ Sends email to recipient list  <toaddr_list>  with <subject> and <bodytext>, you can add an optional number of
-        files and file directories as comma separated arguments *fl  e.g.  'myfile.txt', r'C:\mypath\dir\' this will
+        files and file directories as comma separated arguments *fl  e.g.  'myfile.txt', r'C:/mypath/dir/' this will
         attach all files in the selected directory.  Relative or absolute paths may be used for the attachments."""
 
     # For backward compatibility - may have passed a string of one email instead of list of emails
